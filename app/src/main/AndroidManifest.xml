@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools" >
+	
+	<!--
+        android:allowBackup，是否允许应用备份。
+            允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
+            为 true 表示允许，为 false 则表示不允许
+        android:label，指定 App 在手机屏幕上显示的名称。
+        android:icon，指定 App 在手机屏幕上显示的图标。
+        
+        android:roundIcon，指定 App 的圆角图标。
+        android:supportsRtl，是否支持 阿拉伯语/波斯语 这种从右往左的文字排列顺序。为 true 表示支持，为 false 则表示不支持。
+        android:theme，指定 App 的显示风格。
+     -->
+	<application
+		android:allowBackup="true"
+		android:label="@string/app_name"
+		android:icon="@mipmap/ic_launcher"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.Y_pic"
+		android:fullBackupContent="@xml/backup_rules"
+		tools:targetApi="31"
+		android:dataExtractionRules="@xml/data_extraction_rules">
+		
+		<!-- 注册窗口 -->
+		<activity
+			android:name=".HomeActivity"
+			android:exported="true"
+			android:launchMode="standard">
+			<!-- 配置为主窗口 -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
+	</application>
+
+</manifest>

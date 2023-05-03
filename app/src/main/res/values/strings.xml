@@ -1,0 +1,12 @@
+<resources>
+	
+	<!-- 软件名 -->
+	<string name="app_name">月海 - 图片</string>
+	
+	<!-- 导航按钮 -->
+	<string name="nav_all">全部</string>
+	<string name="nav_directory">目录</string>
+	<string name="nav_tree">树</string>
+	<string name="nav_album">相册</string>
+	
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	RelativeLayout：线性布局
+	layout_width="match_parent"：宽度，与上级视图保持一致
+	layout_height="wrap_content"：高度，内容自适应
+	orientation="horizontal"：水平方向从左往右排列
+	weightSum="4"：将内容分割成的份数，子元素可使用 layout_weight 属性指定占有的份数
+ -->
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:background="@color/purple_200"
+	android:weightSum="4">
+	
+	<Button
+		android:id="@+id/nav_all"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="@string/nav_all"
+		android:textSize="30sp"
+		android:layout_weight="1" style="?android:attr/buttonBarButtonStyle"/>
+	
+	<Button
+		android:id="@+id/nav_directory"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="@string/nav_directory"
+		android:textSize="30sp"
+		android:layout_weight="1" style="?android:attr/buttonBarButtonStyle"/>
+	
+	<Button
+		android:id="@+id/nav_tree"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="@string/nav_tree"
+		android:textSize="30sp"
+		android:layout_weight="1" style="?android:attr/buttonBarButtonStyle"/>
+	
+	<Button
+		android:id="@+id/nav_album"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="@string/nav_album"
+		android:textSize="30sp"
+		android:layout_weight="1" style="?android:attr/buttonBarButtonStyle"/>
+	
+
+</LinearLayout>
