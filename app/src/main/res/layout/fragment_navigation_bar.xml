@@ -12,44 +12,52 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="horizontal"
-	android:background="@color/purple_200"
+	android:background="@color/yuehai_light_blue"
 	android:weightSum="4">
 	
 	<Button
 		android:id="@+id/nav_all"
-		android:layout_width="0dp"
+		android:layout_width="@dimen/dp_0"
 		android:layout_height="wrap_content"
 		android:gravity="center"
 		android:text="@string/nav_all"
-		android:textSize="30sp"
-		android:layout_weight="1" style="?android:attr/buttonBarButtonStyle"/>
+		android:textSize="@dimen/sp_20"
+		android:textColor="@color/white"
+		android:layout_weight="1"
+		style="?android:attr/buttonBarButtonStyle"/>
 	
 	<Button
 		android:id="@+id/nav_directory"
-		android:layout_width="0dp"
+		android:layout_width="@dimen/dp_0"
 		android:layout_height="wrap_content"
 		android:gravity="center"
 		android:text="@string/nav_directory"
-		android:textSize="30sp"
-		android:layout_weight="1" style="?android:attr/buttonBarButtonStyle"/>
+		android:textSize="@dimen/sp_20"
+		android:textColor="@color/white"
+		android:layout_weight="1"
+		style="?android:attr/buttonBarButtonStyle"/>
 	
 	<Button
 		android:id="@+id/nav_tree"
-		android:layout_width="0dp"
+		android:layout_width="@dimen/dp_0"
 		android:layout_height="wrap_content"
 		android:gravity="center"
 		android:text="@string/nav_tree"
-		android:textSize="30sp"
-		android:layout_weight="1" style="?android:attr/buttonBarButtonStyle"/>
+		android:textSize="@dimen/sp_20"
+		android:textColor="@color/white"
+		android:layout_weight="1"
+		style="?android:attr/buttonBarButtonStyle"/>
 	
 	<Button
 		android:id="@+id/nav_album"
-		android:layout_width="0dp"
+		android:layout_width="@dimen/dp_0"
 		android:layout_height="wrap_content"
 		android:gravity="center"
 		android:text="@string/nav_album"
-		android:textSize="30sp"
-		android:layout_weight="1" style="?android:attr/buttonBarButtonStyle"/>
+		android:textSize="@dimen/sp_20"
+		android:textColor="@color/white"
+		android:layout_weight="1"
+		style="?android:attr/buttonBarButtonStyle"/>
 	
 
 </LinearLayout>

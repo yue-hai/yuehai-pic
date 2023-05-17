@@ -14,11 +14,11 @@
         android:theme，指定 App 的显示风格。
      -->
 	<application
-		android:allowBackup="true"
+		android:allowBackup="false"
 		android:label="@string/app_name"
 		android:icon="@mipmap/ic_launcher"
 		android:roundIcon="@mipmap/ic_launcher_round"
-		android:supportsRtl="true"
+		android:supportsRtl="false"
 		android:theme="@style/Theme.Y_pic"
 		android:fullBackupContent="@xml/backup_rules"
 		tools:targetApi="31"

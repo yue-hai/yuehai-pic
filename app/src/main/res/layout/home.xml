@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical">
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:orientation="vertical">
 	
 	<!--
-		引入 Fragment
+		引入 Fragment 顶部导航栏
 		tools:layout：无实际作用，单纯告诉编译器布局编辑时预览不同的布局，而不需要等到运行时才能看到效果
 	-->
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/nav"
-		android:name="com.yuehai.pic.ui.fragment.ClickableText"
+		android:name="com.yuehai.pic.ui.fragment.FragmentNavigationBar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:layout="@layout/fragment_clickable_text" />
+		tools:layout="@layout/fragment_navigation_bar" />
 	
-	<TextView
-		android:id="@+id/home_text"
-		android:text="0"
-		android:textSize="100dp"
-		android:background="@color/purple_200"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" />
+	<!-- 翻页视图：显示内容主体 -->
+	<androidx.viewpager2.widget.ViewPager2
+		android:id="@+id/content"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+	
+	
 
 </LinearLayout>

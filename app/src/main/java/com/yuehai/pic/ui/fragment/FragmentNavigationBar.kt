@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
-import com.yuehai.pic.ui.fragment.base.BaseFragment
 
 /**
 @author 月海
 @create 2023/4/29 19:30
  */
-class ClickableText: BaseFragment() {
+class FragmentNavigationBar: Fragment() {
 
     /**
-     * onCreatView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
+     * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
      *
      * LayoutInflater inflater：作用类似于 findViewById()
      *      findViewById（）用来寻找 xml 布局下的具体的控件（Button、TextView等）
@@ -26,14 +26,14 @@ class ClickableText: BaseFragment() {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // 加载 Fragment 布局
-        val view = inflater.inflate(R.layout.fragment_clickable_text, container, false)
+        val view = inflater.inflate(R.layout.fragment_navigation_bar, container, false)
 
         // 给 Fragment 的按钮添加事件
         view.findViewById<Button>(R.id.nav_all).setOnClickListener { onClickListenerNavAll() }
         view.findViewById<Button>(R.id.nav_directory).setOnClickListener { onClickListenerNavDirectory() }
         view.findViewById<Button>(R.id.nav_tree).setOnClickListener { onClickListenerNavTree() }
         view.findViewById<Button>(R.id.nav_album).setOnClickListener { onClickListenerNavAlbum() }
-
+ 
         return view
     }
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<!-- 控件尺寸 -->
+	<dimen name="dp_0">0dp</dimen>
+	
+	
+	<!-- 字体尺寸 -->
+	<dimen name="sp_20">15sp</dimen>
+	
+	
+</resources>
