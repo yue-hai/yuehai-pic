@@ -2,11 +2,10 @@
 <resources>
 	
 	<!-- 控件尺寸 -->
-	<dimen name="dp_0">0dp</dimen>
-	
+	<dimen name="dp_24">24dp</dimen>
 	
 	<!-- 字体尺寸 -->
-	<dimen name="sp_20">15sp</dimen>
+	<dimen name="sp_15">15sp</dimen>
 	
 	
 </resources>

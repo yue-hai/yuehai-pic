@@ -10,5 +10,7 @@
 	
 	<!-- 淡蓝色；主题色 -->
 	<color name="yuehai_light_blue">#7187f4</color>
+	<!-- 白色配浅蓝色：未选中导航栏使用的颜色 -->
+	<color name="yuehai_white_with_light_blue">#c4d1ff</color>
 	
 </resources>

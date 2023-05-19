@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools" >
 	
+	<!-- 存储卡读写权限 -->
+	<!-- 在安卓 6.0（API 23）及以上系统，考虑到安全，访问手机 SD 卡时，不但要加权限，还需要在代码中动态申请权限 -->
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+	
 	<!--
         android:allowBackup，是否允许应用备份。
             允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
@@ -22,7 +28,8 @@
 		android:theme="@style/Theme.Y_pic"
 		android:fullBackupContent="@xml/backup_rules"
 		tools:targetApi="31"
-		android:dataExtractionRules="@xml/data_extraction_rules">
+		android:dataExtractionRules="@xml/data_extraction_rules"
+		android:requestLegacyExternalStorage="true">
 		
 		<!-- 注册窗口 -->
 		<activity

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
 
+// 主体内容：相册
 class FragmentContentAlbum: Fragment() {
 	
 	/**

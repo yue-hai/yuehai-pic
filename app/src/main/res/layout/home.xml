@@ -1,27 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		xmlns:tools="http://schemas.android.com/tools"
-		android:orientation="vertical">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical">
 	
 	<!--
-		引入 Fragment 顶部导航栏
+		引入 Fragment 顶部工具栏
 		tools:layout：无实际作用，单纯告诉编译器布局编辑时预览不同的布局，而不需要等到运行时才能看到效果
 	-->
 	<androidx.fragment.app.FragmentContainerView
-		android:id="@+id/nav"
-		android:name="com.yuehai.pic.ui.fragment.FragmentNavigationBar"
+		android:id="@+id/home_fragment_tool_bar"
+		android:name="com.yuehai.pic.ui.fragment.FragmentToolBar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:layout="@layout/fragment_navigation_bar" />
+		tools:layout="@layout/fragment_tool_bar" />
+
+	<!--
+		翻页视图的标签栏，要与 ViewPager2 组合使用
+		
+		background：背景颜色
+		tabTextColor：未选中时的字体颜色
+		tabSelectedTextColor：选中时的字体颜色
+		tabIndicatorColor：指示器颜色
+		tabRippleColor：点击选中时的阴影颜色
+	 -->
+	<com.google.android.material.tabs.TabLayout
+		android:id="@+id/home_TableLayout_navigation_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/yuehai_light_blue"
+		app:tabTextColor="@color/yuehai_white_with_light_blue"
+		app:tabSelectedTextColor="@color/white"
+		app:tabIndicatorColor="@color/white"
+		app:tabRippleColor="@color/yuehai_white_with_light_blue"/>
 	
 	<!-- 翻页视图：显示内容主体 -->
 	<androidx.viewpager2.widget.ViewPager2
-		android:id="@+id/content"
+		android:id="@+id/home_ViewPager2_content"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
-	
-	
+		
 
 </LinearLayout>
