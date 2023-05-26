@@ -1,6 +1,5 @@
 package com.yuehai.pic.ui.fragment
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +7,12 @@ import android.view.ViewGroup
 import android.widget.GridView
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
+import com.yuehai.pic.bean.global.PictureAll
 import com.yuehai.pic.ui.fragment.adapter.FragmentContentAllAdapter
 
 
 // 主体内容：全部
-class FragmentContentAll(
-	// 所需数据
-	private var data: MutableList<Long>
-): Fragment()  {
+class FragmentContentAll: Fragment()  {
 	
 	/**
 	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
@@ -34,7 +31,7 @@ class FragmentContentAll(
 		// 获取网格控件对象
 		val gridView = view.findViewById<GridView>(R.id.fragment_content_all_item_GridView)
 		// 声明一个适配器
-		val starAdapter = FragmentContentAllAdapter(requireActivity().applicationContext, data)
+		val starAdapter = FragmentContentAllAdapter(requireActivity().applicationContext, PictureAll.picAllList)
 		// 传入适配器实例
 		gridView.adapter = starAdapter
 		

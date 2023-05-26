@@ -58,9 +58,6 @@ class FragmentContentAllAdapter(
 				MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
 				data[position]
 			))
-			// .skipMemoryCache(true)
-			.diskCacheStrategy(DiskCacheStrategy.NONE)
-			.override(50, 50)
 			.into(imageView)
 		
 		// 给控件设置图片数据

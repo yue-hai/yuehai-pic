@@ -7,11 +7,9 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yuehai.pic.ui.adapter.HomeContentViewPager2Adapter
-import com.yuehai.pic.utils.ImageUtil
 import com.yuehai.pic.utils.PermissionUtil
 import kotlin.system.exitProcess
 
@@ -120,44 +118,19 @@ class HomeActivity: AppCompatActivity() {
          */
         val tabLayoutMediator = TabLayoutMediator(tableLayout, viewPager) { tab, position ->
             // 根据位置设置标签的标题
-            setTabLayout(tab, position)
+            when(position){
+                // 全部
+                0 -> { tab.text = getString(R.string.navigation_bar_all) }
+                // 目录
+                1 -> { tab.text = getString(R.string.navigation_bar_directory) }
+                // 树
+                2 -> { tab.text = getString(R.string.navigation_bar_tree) }
+                // 相册
+                3 -> { tab.text = getString(R.string.navigation_bar_album) }
+            }
         }
         // 将此标签栏依附到翻页视图对象上
         tabLayoutMediator.attach()
-    }
-    
-    /**
-     * 根据位置设置标签的标题
-     *
-     * @param tab 翻页视图单独的每个标签
-     * @param position
-     */
-    private fun setTabLayout(tab: TabLayout.Tab, position: Int){
-        when(position){
-            // 全部
-            0 -> { tab.text = getString(R.string.navigation_bar_all) }
-            // 目录
-            1 -> { tab.text = getString(R.string.navigation_bar_directory) }
-            // 树
-            2 -> { tab.text = getString(R.string.navigation_bar_tree) }
-            // 相册
-            3 -> { tab.text = getString(R.string.navigation_bar_album) }
-        }
-    }
-    
-    override fun onTrimMemory(level: Int) {
-        super.onTrimMemory(level)
-    
-        if (level == TRIM_MEMORY_UI_HIDDEN){
-            Glide.get(this).clearMemory()
-        }
-        Glide.get(this).trimMemory(level)
-    }
-    
-    override fun onLowMemory() {
-        super.onLowMemory()
-    
-        Glide.get(this).clearMemory()
     }
 
 }

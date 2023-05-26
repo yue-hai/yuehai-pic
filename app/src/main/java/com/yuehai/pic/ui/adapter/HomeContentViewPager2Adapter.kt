@@ -8,7 +8,7 @@ import com.yuehai.pic.ui.fragment.FragmentContentAlbum
 import com.yuehai.pic.ui.fragment.FragmentContentAll
 import com.yuehai.pic.ui.fragment.FragmentContentDirectory
 import com.yuehai.pic.ui.fragment.FragmentContentTree
-import com.yuehai.pic.utils.ImageUtil
+import com.yuehai.pic.utils.PictureUtil
 
 class HomeContentViewPager2Adapter(
 	/**
@@ -35,7 +35,10 @@ class HomeContentViewPager2Adapter(
 		// 根据索引判断创建哪个 Fragment 实例，并赋值
 		when(p0){
 			// 全部
-			0 -> { fragmentView = FragmentContentAll(ImageUtil().getImageAll(contentResolver, mutableListOf())) }
+			0 -> {
+				fragmentView = FragmentContentAll()
+				PictureUtil().getImageAll(contentResolver)
+			}
 			// 目录
 			1 -> { fragmentView = FragmentContentDirectory() }
 			// 树

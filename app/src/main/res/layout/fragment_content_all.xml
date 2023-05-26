@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 主体内容：全部 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--
+    网格视图 GridView
+    numColumns="4"：列数
+    stretchMode="columnWidth"：拉伸模式，若有剩余空间，则拉伸列宽挤掉空隙
+    listSelector="@drawable/list_selector：定义列表的状态效果
+ -->
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/fragment_content_all_item_GridView"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:numColumns="4"
+	android:stretchMode="columnWidth">
 
-	<!--
-        网格视图 GridView
-        numColumns="4"：列数
-        stretchMode="columnWidth"：拉伸模式，若有剩余空间，则拉伸列宽挤掉空隙
-        listSelector="@drawable/list_selector：定义列表的状态效果
-     -->
-	<GridView
-		android:id="@+id/fragment_content_all_item_GridView"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:numColumns="4"
-		android:stretchMode="columnWidth" />
-	
-</LinearLayout>
+</GridView>

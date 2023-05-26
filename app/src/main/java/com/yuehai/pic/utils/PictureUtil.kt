@@ -1,14 +1,13 @@
 package com.yuehai.pic.utils
 
 import android.content.ContentResolver
-import android.content.ContentUris
-import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
+import com.yuehai.pic.bean.global.PictureAll
 
-class ImageUtil {
+class PictureUtil {
 	
-	fun getImageAll(contentResolver: ContentResolver, imageURIList: MutableList<Long>): MutableList<Long>{
+	fun getImageAll(contentResolver: ContentResolver){
 		
 		// 查询所有图片的 Uri
 		val cursor = contentResolver.query(
@@ -31,21 +30,21 @@ class ImageUtil {
 				//val name = cursor.getString(nameColumnIndex)
 				
 				num++
-				Log.i("月海", "getImageAll $num")
+				Log.i("月海 索引", num.toString())
+				// Log.i("月海 cursor", cursor.)
 				
 				// 将图片的 Uri 添加到 imageURIList 中
-				imageURIList.add(id);
+				PictureAll.picAllList.add(id)
 				
-				// if (num > 3500){
-				// 	return imageURIList
-				// }
+				if (num > 3500){
+					return
+				}
 				
 			} while (cursor.moveToNext())
 		}
 		
 		cursor?.close()
 		
-		return imageURIList
 	}
 	
 }
