@@ -18,7 +18,8 @@ class HomeContentViewPager2Adapter(
 	 *  注册或取消注册 fa 的生命周期观察者，比如 fa.lifecycle.addObserver 或 fa.lifecycle.removeObserver。
 	 *  在 fa 中创建或销毁 Fragment，比如 fa.supportFragmentManager.beginTransaction().add 或 fa.supportFragmentManager.beginTransaction().remove。
 	 */
-	fa: FragmentActivity,
+	private val fa: FragmentActivity,
+	// 内容提供器
 	private val contentResolver: ContentResolver
 ): FragmentStateAdapter(fa) {
 	
@@ -35,10 +36,7 @@ class HomeContentViewPager2Adapter(
 		// 根据索引判断创建哪个 Fragment 实例，并赋值
 		when(p0){
 			// 全部
-			0 -> {
-				fragmentView = FragmentContentAll()
-				PictureUtil().getImageAll(contentResolver)
-			}
+			0 -> { fragmentView = FragmentContentAll(fa, contentResolver) }
 			// 目录
 			1 -> { fragmentView = FragmentContentDirectory() }
 			// 树

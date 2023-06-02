@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.yuehai.pic.bean.global.Permissions
 import com.yuehai.pic.ui.adapter.HomeContentViewPager2Adapter
 import com.yuehai.pic.utils.PermissionUtil
 import kotlin.system.exitProcess
@@ -20,19 +21,13 @@ import kotlin.system.exitProcess
  */
 class HomeActivity: AppCompatActivity() {
     
-    // 存储卡读写权限
-    private val PERMISSIONS_STORAGE = arrayOf(
-        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-    )
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
         setContentView(R.layout.home)
-    
+
         // 调用封装的方法，检查并获取权限
-        if (PermissionUtil().checkPermission(this, PERMISSIONS_STORAGE, 0)){
+        if (PermissionUtil().checkPermission(this, Permissions.permissions_storage, 0)){
             // 调用方法，创建翻页视图对象 ViewPager2
             createViewPager()
         }

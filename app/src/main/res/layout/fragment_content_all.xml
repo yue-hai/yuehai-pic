@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 主体内容：全部 -->
-
-<!--
-    网格视图 GridView
-    numColumns="4"：列数
-    stretchMode="columnWidth"：拉伸模式，若有剩余空间，则拉伸列宽挤掉空隙
-    listSelector="@drawable/list_selector：定义列表的状态效果
- -->
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/fragment_content_all_item_GridView"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:numColumns="4"
-	android:stretchMode="columnWidth">
+	android:weightSum="4">
+	
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/fragment_content_all_item_RecyclerView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
 
-</GridView>
+</androidx.constraintlayout.widget.ConstraintLayout>

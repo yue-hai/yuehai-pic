@@ -2,14 +2,37 @@ package com.yuehai.pic.utils
 
 import android.content.ContentResolver
 import android.provider.MediaStore
-import android.util.Log
-import com.yuehai.pic.bean.global.PictureAll
 
+/**
+ * 图片工具类
+ */
 class PictureUtil {
 	
-	fun getImageAll(contentResolver: ContentResolver){
+	/**
+	 * 查询所有图片
+	 */
+	fun getImageAll(contentResolver: ContentResolver): MutableList<Long>{
 		
-		// 查询所有图片的 Uri
+		var data: MutableList<Long> = mutableListOf()
+		
+		// 只查询图片 url 和图片所在的目录
+		// val projection = arrayOf(
+		// 	MediaStore.Images.ImageColumns.DATA,
+		// 	MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME
+		// )
+		// // 图片的时间倒叙排列，图片的创建、修改会影响其所在目录的排序，排序按时间倒叙排列
+		// val sortOrder = MediaStore.Images.Media.DATE_TAKEN + " DESC "
+		
+		// // 查询所有图片
+		// val cursor = contentResolver.query(
+		// 	MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+		// 	projection,
+		// 	null,
+		// 	null,
+		// 	sortOrder
+		// )
+		
+		// 查询所有图片
 		val cursor = contentResolver.query(
 			MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
 			null,
@@ -18,33 +41,21 @@ class PictureUtil {
 			null
 		)
 		
-		var num = 0
-		
 		// 如果查询到了数据
-		if (cursor != null && cursor.moveToFirst()) {
-			do {
+		if (cursor!!.moveToFirst()) {
+			// 遍历查询结果
+			while (cursor.moveToNext()){
 				// 获取图片的 ID 和文件名等信息
 				val idColumnIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID)
 				val id = cursor.getLong(idColumnIndex)
-				//val nameColumnIndex = cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME)
-				//val name = cursor.getString(nameColumnIndex)
-				
-				num++
-				Log.i("月海 索引", num.toString())
-				// Log.i("月海 cursor", cursor.)
 				
 				// 将图片的 Uri 添加到 imageURIList 中
-				PictureAll.picAllList.add(id)
-				
-				if (num > 3500){
-					return
-				}
-				
-			} while (cursor.moveToNext())
+				data.add(id)
+			}
 		}
-		
-		cursor?.close()
-		
+
+		cursor.close()
+		return data
 	}
 	
 }
