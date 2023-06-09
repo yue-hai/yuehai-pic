@@ -3,13 +3,15 @@ package com.yuehai.pic.ui.fragment.adapter
 import android.content.ContentUris
 import android.content.Context
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.DecodeFormat
 import com.yuehai.pic.R
+import com.yuehai.pic.bean.global.Config.GLIDE_DISK_CACHE_STRATEGY
 import com.yuehai.pic.ui.fragment.adapter.holder.FragmentContentAllHolder
 
 
@@ -26,7 +28,7 @@ class FragmentContentAllAdapter(
 	 * 该方法的返回值是一个 ViewHolder 对象。在该方法中，您需要创建一个新的 View 对象，并将其包装在一个新的 ViewHolder 对象中。
 	 */
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-		val view = LayoutInflater.from(context).inflate(R.layout.fragment_content_pic_item, parent, false)
+		val view = LayoutInflater.from(context).inflate(R.layout.fragment_image_item, parent, false)
 		return FragmentContentAllHolder(view)
 	}
 	
@@ -49,12 +51,19 @@ class FragmentContentAllAdapter(
 			.placeholder(androidx.appcompat.R.drawable.abc_tab_indicator_mtrl_alpha)
 			// 跳过内存缓存
 			.skipMemoryCache(true)
-			// 全部使用磁盘缓存
-			.diskCacheStrategy(DiskCacheStrategy.ALL)
+			// 不使用磁盘缓存
+			.diskCacheStrategy(GLIDE_DISK_CACHE_STRATEGY)
 			// 裁剪图片大小
 			.override(200, 200)
+			// 将解码格式设置为 RGB_565
+			.format(DecodeFormat.PREFER_RGB_565)
 			// 设置视图
 			.into((holder as FragmentContentAllHolder).imageView)
+		
+		// 给每个视图绑定点击事件
+		holder.itemView.setOnClickListener {
+			Log.i("月海", "点击单个视图 ${data[position]}")
+		}
 	}
 	
 	/**

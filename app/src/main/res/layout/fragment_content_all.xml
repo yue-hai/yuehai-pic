@@ -2,15 +2,15 @@
 <!-- 主体内容：全部 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:weightSum="4">
 	
+	<!-- RecyclerView 动态列表，用于显示图片列表 -->
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/fragment_content_all_item_RecyclerView"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"

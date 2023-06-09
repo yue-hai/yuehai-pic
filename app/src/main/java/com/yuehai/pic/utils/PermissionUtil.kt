@@ -5,6 +5,9 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
+/**
+ * 权限操作工具类
+ */
 class PermissionUtil {
 	
 	/**

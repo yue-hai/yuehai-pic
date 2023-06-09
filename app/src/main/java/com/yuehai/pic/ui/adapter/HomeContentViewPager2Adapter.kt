@@ -4,11 +4,11 @@ import android.content.ContentResolver
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.yuehai.pic.HomeActivity
 import com.yuehai.pic.ui.fragment.FragmentContentAlbum
 import com.yuehai.pic.ui.fragment.FragmentContentAll
 import com.yuehai.pic.ui.fragment.FragmentContentDirectory
 import com.yuehai.pic.ui.fragment.FragmentContentTree
-import com.yuehai.pic.utils.PictureUtil
 
 class HomeContentViewPager2Adapter(
 	/**
@@ -20,7 +20,9 @@ class HomeContentViewPager2Adapter(
 	 */
 	private val fa: FragmentActivity,
 	// 内容提供器
-	private val contentResolver: ContentResolver
+	private val contentResolver: ContentResolver,
+	// HomeActivity 实例，用于获取 HomeActivity 中的其他控件
+	private val homeActivity: HomeActivity
 ): FragmentStateAdapter(fa) {
 	
 	// 返回要显示的 Fragment 的个数
@@ -36,7 +38,7 @@ class HomeContentViewPager2Adapter(
 		// 根据索引判断创建哪个 Fragment 实例，并赋值
 		when(p0){
 			// 全部
-			0 -> { fragmentView = FragmentContentAll(fa, contentResolver) }
+			0 -> { fragmentView = FragmentContentAll(fa, contentResolver, homeActivity) }
 			// 目录
 			1 -> { fragmentView = FragmentContentDirectory() }
 			// 树
@@ -48,6 +50,5 @@ class HomeContentViewPager2Adapter(
 		// 返回 Fragment 实例
 		return fragmentView!!
 	}
-	
 	
 }

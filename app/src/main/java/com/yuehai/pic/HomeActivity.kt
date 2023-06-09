@@ -1,18 +1,14 @@
 package com.yuehai.pic
 
-import android.Manifest
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.yuehai.pic.bean.global.Permissions
+import com.yuehai.pic.bean.global.Permissions.PERMISSIONS_STORAGE
 import com.yuehai.pic.ui.adapter.HomeContentViewPager2Adapter
+import com.yuehai.pic.utils.CreateAlertDialogUtil
 import com.yuehai.pic.utils.PermissionUtil
-import kotlin.system.exitProcess
 
 
 /**
@@ -24,10 +20,10 @@ class HomeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
-        setContentView(R.layout.home)
+        setContentView(R.layout.activity_home)
 
         // 调用封装的方法，检查并获取权限
-        if (PermissionUtil().checkPermission(this, Permissions.permissions_storage, 0)){
+        if (PermissionUtil().checkPermission(this, PERMISSIONS_STORAGE, 0)){
             // 调用方法，创建翻页视图对象 ViewPager2
             createViewPager()
         }
@@ -49,42 +45,8 @@ class HomeActivity: AppCompatActivity() {
             // 调用方法，创建翻页视图对象 ViewPager2
             createViewPager()
         }else{
-            // 获取权限失败，创建一个获取权限失败提示一下；创建提醒对话框的建造器
-            val builder = AlertDialog.Builder(this)
-    
-            // 设置对话框的标题文本
-            builder.setTitle("获取存储卡读写权限失败")
-            // 设置对话框的内容文本
-            builder.setMessage("""
-                这是一个图片管理器
-                没有权限就做不到任何事情
-                重启软件可以重新获取权限
-                点击确定按钮重新启动软件
-                点击取消按钮不会发生任何事
-            """.trimIndent())
-    
-            /**
-             * 设置对话框的肯定按钮文本及其点击监听器
-             *
-             * dialog 是一个 AlertDialog.Builder 对象，它用于创建一个提醒对话框。
-             * which 是一个整数值，表示用户点击的按钮的索引。
-             *
-             * 在这里，我们设置了两个按钮：确定和取消。
-             * 当用户点击确定按钮时，which 的值为 DialogInterface.BUTTON_POSITIVE（-1），当
-             * 用户点击取消按钮时，which 的值为 DialogInterface.BUTTON_NEGATIVE（-2）
-             */
-            builder.setPositiveButton("确定"){ _, _ ->
-                // 使用 Intent 启动应用的主界面，然后调用 exitProcess(0)来结束当前的进程和活动
-                startActivity(Intent(this, HomeActivity::class.java))
-                exitProcess(0)
-            }
-            // 设置对话框的否定按钮文本及其点击监听器
-            builder.setNegativeButton("取消"){ _, _ -> Log.d("月海", "点击了取消") }
-    
-            // 根据建造器构建提醒对话框对象
-            val alertDialog = builder.create()
-            // 显示提醒对话框
-            alertDialog.show()
+            // 调用方法，显示提示对话框
+            CreateAlertDialogUtil().storagePermissionErrorDialog(this)
         }
     }
     
@@ -94,10 +56,8 @@ class HomeActivity: AppCompatActivity() {
     private fun createViewPager(){
         // 获取翻页视图对象 ViewPager2
         val viewPager = findViewById<ViewPager2>(R.id.home_ViewPager2_content)
-        // 构建适配器
-        val homeContentViewPager2Adapter = HomeContentViewPager2Adapter(this, contentResolver)
-        // 传入适配器实例
-        viewPager.adapter = homeContentViewPager2Adapter
+        // 构建适配器，并传入适配器实例
+        viewPager.adapter = HomeContentViewPager2Adapter(this, contentResolver, this)
         // 默认开始选中第几个视图
         viewPager.currentItem = 0
     
@@ -129,22 +89,3 @@ class HomeActivity: AppCompatActivity() {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

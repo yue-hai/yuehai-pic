@@ -8,8 +8,8 @@
 	android:id="@+id/pic_item"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:maxWidth="100dp"
-	android:maxHeight="100dp"
+	android:maxWidth="@dimen/dp_100"
+	android:maxHeight="@dimen/dp_100"
 	android:scaleType="centerCrop"
 	android:adjustViewBounds="true"
 	android:contentDescription="@string/fragment_content_all_item_imagePath"/>

@@ -14,8 +14,9 @@
 		android:id="@+id/home_fragment_tool_bar"
 		android:name="com.yuehai.pic.ui.fragment.FragmentToolBar"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:layout="@layout/fragment_tool_bar" />
+		android:layout_height="@dimen/dp_50"
+		android:layout_marginTop="0dp"
+		tools:layout="@layout/fragment_tool_bar"/>
 
 	<!--
 		翻页视图的标签栏，要与 ViewPager2 组合使用
@@ -42,6 +43,4 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
 	
-		
-
 </LinearLayout>
