@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
 
@@ -33,9 +35,12 @@ class FragmentToolBar: Fragment() {
 		return view
 	}
 	
-	// 设置菜单
+	// 设置菜单。点击打开侧边栏
 	private fun onClickListenerSettingsMenu(){
-		Log.i("工具栏", "设置菜单")
+		// 获取 DrawerLayout 整体布局
+		val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_menu)
+		// 打开侧边栏
+		drawerLayout?.openDrawer(GravityCompat.START)
 	}
 	
 	// 排序按钮

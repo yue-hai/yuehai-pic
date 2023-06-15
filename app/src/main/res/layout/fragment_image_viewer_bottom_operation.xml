@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 图片详情 - 底部图片操作按钮 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:weightSum="8"
+	android:background="@color/black">
+	
+	<!-- 返回按钮 -->
+	<ImageButton
+		android:id="@+id/top_information_back_button"
+		android:src="@drawable/image_details_arrow_back_24"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:gravity="center"
+		style="?android:attr/buttonBarButtonStyle"
+		android:contentDescription="@string/image_viewer_bottom_operation" />
+
+</LinearLayout>

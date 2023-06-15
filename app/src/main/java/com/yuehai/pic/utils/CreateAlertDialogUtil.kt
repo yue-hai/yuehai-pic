@@ -5,7 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
-import com.yuehai.pic.HomeActivity
+import com.yuehai.pic.ui.activity.HomeActivity
 import kotlin.system.exitProcess
 
 /**

@@ -19,7 +19,7 @@ class ListenerUtil {
 	 * @return 此处因为要监听点击事件（FragmentContentAllAdapter 中），所以按下时要返回 false
 	 * 又因为要监听点击事件的原因，按下时的监听不会触发，所以逻辑要写在滑动的监听中
 	 */
-	fun homeToolBarTouchListener(event: MotionEvent, toolBarView: FragmentContainerView) : Boolean{
+	fun homeToolBarTouchListener(event: MotionEvent, toolBarView: FragmentContainerView?) : Boolean{
 		// 判断滑动事件种类
 		when(event.action){
 			// 手指按下时的处理逻辑
@@ -41,12 +41,18 @@ class ListenerUtil {
 				/**
 				 * 本次的坐标 - 上次的坐标 = 赋值给移动的距离 + 上边距 = 滑动后上边距应该赋予的值
 				 */
-				val topMargin = (event.rawY - lastCoordinate!!) + toolBarView.marginTop
+				val topMargin = (event.rawY - lastCoordinate!!) + toolBarView!!.marginTop
 				
 				/**
 				 * android 的 view 中有 setPadding，但是没有直接的 setMargin 方法
 				 * 如果要在代码中设置 Margin 可以通过设置 view 里面的 LayoutParams 设置
-				 * 而这个 LayoutParams 是根据该 view 在不同的 GroupView 而不同的
+				 * 而这个 LayoutParams 是根据该 view 在不同的 GroupView 而不同的，具体取决于父布局的类型和需要修改的具体布局参数。
+				 * 如果父布局是 ConstraintLayout，并且需要修改的布局参数是 ConstraintLayout.LayoutParams 中定义的特定属性（例如 `topMargin`）
+				 *      那么可以使用 fragmentContainerView.layoutParams as ConstraintLayout.LayoutParams
+				 * 如果父布局是任何类型的 ViewGroup，并且只需要修改通用的布局参数（例如 `topMargin`、`leftMargin` 等），
+				 *      那么可以使用 fragmentContainerView.layoutParams as ViewGroup.MarginLayoutParams。
+				 * MarginLayoutParams 是 ViewGroup 的一个子类，它包含了常用的边距属性。
+				 * 所以，选择使用哪种写法取决于具体情况和需求。如果需要修改特定布局类型的特定属性，选择对应的布局参数类型；如果只需要修改通用属性，选择通用的 MarginLayoutParams
 				 *
 				 * 1、获取所要修改 Margin 的 view 对象的 LayoutParams 对象
 				 * 2、给 LayoutParams 对象的 topMargin（或其他属性）属性赋值

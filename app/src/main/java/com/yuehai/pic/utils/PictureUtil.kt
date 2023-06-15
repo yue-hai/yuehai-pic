@@ -3,6 +3,10 @@ package com.yuehai.pic.utils
 import android.content.ContentResolver
 import android.net.Uri
 import android.provider.MediaStore
+import com.yuehai.pic.bean.ImageData
+import com.yuehai.pic.bean.global.Global.imageDataList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
 
 /**
  * 图片工具类
@@ -12,14 +16,14 @@ class PictureUtil {
 	/**
 	 * 查询所有图片
 	 * @param contentResolver 内容提供器
+	 * @param scope 协程对象
 	 * @param sortOrder 排序方式，默认按时间降序
 	 */
 	fun getImageAll(
 		contentResolver: ContentResolver,
+		scope: CoroutineScope,
 		sortOrder: String = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
-	): MutableList<Long>{
-		
-		val data: MutableList<Long> = mutableListOf()
+	){
 
 		/**
 		 * 通过 contentResolver.query() 方法可以查询 MediaStore 数据库，这个方法接收五个参数：
@@ -50,15 +54,16 @@ class PictureUtil {
 			while (cursor.moveToNext()){
 				// 获取图片的 ID
 				val idColumnIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID)
-				val id = cursor.getLong(idColumnIndex)
 				
-				// 将图片的 Uri 添加到 imageURIList 中
-				data.add(id)
+				// 将图片的 Uri 添加到 imageDataList 中
+				imageDataList.add(ImageData(cursor.getLong(idColumnIndex)))
 			}
 		}
-
+		
+		// 关闭 cursor
 		cursor.close()
-		return data
+		// 取消协程
+		scope.cancel()
 	}
 	
 }

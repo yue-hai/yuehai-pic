@@ -15,6 +15,7 @@
 	<string name="tool_bar_search">搜索</string>
 	<string name="tool_bar_start">开始进行分类处理</string>
 	<string name="fragment_content_all_item_imagePath">某张图片</string>
+	<string name="image_viewer_bottom_operation">返回按钮</string>
 	
 	
 	

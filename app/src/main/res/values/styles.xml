@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- values 目录是默认的资源值目录，用于存放通用的资源值，适用于大多数 Android 版本。在这个目录中定义的资源值将被应用于所有 Android 设备，无论其版本号。 -->
+<resources>
+	<!-- 隐藏通知栏的样式 -->
+	<style name="NoTitleBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+	</style>
+
+</resources>

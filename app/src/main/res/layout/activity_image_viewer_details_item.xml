@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 图片项，条目布局文件 -->
+<!-- 图片项，图片详情，原始图片条目布局文件 -->
 
 <!--
     adjustViewBounds="true"：调整 ImageView 的边界，使得 ImageView 和图片有一样的长宽比例
  -->
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/pic_item"
+	android:id="@+id/image_details_item"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:maxWidth="@dimen/dp_100"
-	android:maxHeight="@dimen/dp_100"
-	android:scaleType="centerCrop"
+	android:layout_height="match_parent"
+	android:scaleType="fitCenter"
 	android:adjustViewBounds="true"
+	android:background="@color/black"
 	android:contentDescription="@string/fragment_content_all_item_imagePath"/>

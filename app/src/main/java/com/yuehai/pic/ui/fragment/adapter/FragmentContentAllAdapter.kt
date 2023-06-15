@@ -1,25 +1,23 @@
 package com.yuehai.pic.ui.fragment.adapter
 
-import android.content.ContentUris
 import android.content.Context
-import android.provider.MediaStore
-import android.util.Log
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DecodeFormat
 import com.yuehai.pic.R
-import com.yuehai.pic.bean.global.Config.GLIDE_DISK_CACHE_STRATEGY
+import com.yuehai.pic.bean.global.Global.imageDataList
+import com.yuehai.pic.ui.activity.ImageViewerActivity
 import com.yuehai.pic.ui.fragment.adapter.holder.FragmentContentAllHolder
+import com.yuehai.pic.utils.GlideUtil
 
 
 class FragmentContentAllAdapter(
 	// 上下文环境
-	private var context: Context,
-	// 所需数据
-	private var data: MutableList<Long>
+	private var context: Context
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 	
 	/**
@@ -28,7 +26,7 @@ class FragmentContentAllAdapter(
 	 * 该方法的返回值是一个 ViewHolder 对象。在该方法中，您需要创建一个新的 View 对象，并将其包装在一个新的 ViewHolder 对象中。
 	 */
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-		val view = LayoutInflater.from(context).inflate(R.layout.fragment_image_item, parent, false)
+		val view = LayoutInflater.from(context).inflate(R.layout.fragment_image_list_thumbnail_item, parent, false)
 		return FragmentContentAllHolder(view)
 	}
 	
@@ -39,30 +37,19 @@ class FragmentContentAllAdapter(
 	 */
 	override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 		// 使用 Glide 加载图片
-		Glide.with(context)
-			// 图片的绘制方式，相对而言，asDrawable() 比 asBitmap() 要省
-			.asDrawable()
-			// 设置图片 uri
-			.load(ContentUris.withAppendedId(
-				MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-				data[position]
-			))
-			// 设置默认显示的图片
-			.placeholder(androidx.appcompat.R.drawable.abc_tab_indicator_mtrl_alpha)
-			// 跳过内存缓存
-			.skipMemoryCache(true)
-			// 不使用磁盘缓存
-			.diskCacheStrategy(GLIDE_DISK_CACHE_STRATEGY)
-			// 裁剪图片大小
-			.override(200, 200)
-			// 将解码格式设置为 RGB_565
-			.format(DecodeFormat.PREFER_RGB_565)
-			// 设置视图
-			.into((holder as FragmentContentAllHolder).imageView)
-		
+		GlideUtil().imageListThumbnail(context, (holder as FragmentContentAllHolder).imageView, imageDataList[position].id)
+
 		// 给每个视图绑定点击事件
 		holder.itemView.setOnClickListener {
-			Log.i("月海", "点击单个视图 ${data[position]}")
+			// 向下一个 Activity 发送消息，显式 Intent 传递：在 Intent 的构造函数中指定
+			val intent = Intent(context, ImageViewerActivity().javaClass)
+			// 通过 bundle 包装数据
+			val bundle = Bundle()
+			bundle.putInt("position", position)
+			// 将 bundle 放入 intent 对象中
+			intent.putExtras(bundle)
+			// 跳转到跳转到自己定义的 activity，传递 intent 对象
+			context.startActivity(intent)
 		}
 	}
 	
@@ -84,7 +71,7 @@ class FragmentContentAllAdapter(
 	 * 该方法的返回值是一个整数，表示数据集中的元素数量。
 	 */
 	override fun getItemCount(): Int {
-		return data.size
+		return imageDataList.size
 	}
 	
 }

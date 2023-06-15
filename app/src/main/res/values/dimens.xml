@@ -5,6 +5,7 @@
 	<dimen name="dp_24">24dp</dimen>
 	<dimen name="dp_50">50dp</dimen>
 	<dimen name="dp_100">100dp</dimen>
+	<dimen name="dp_280">280dp</dimen>
 	
 	<!-- 字体尺寸 -->
 	<dimen name="sp_15">15sp</dimen>

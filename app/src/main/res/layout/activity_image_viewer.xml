@@ -1,17 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:background="@color/black">
 	
-	<ImageView
-		android:id="@+id/image_viewer_ImageView"
+	<!-- RecyclerView 动态列表，用于显示图片列表 -->
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/image_viewer_RecyclerView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+	
+	<!-- 占位，给该控件的高度赋值为通知栏的高度，以便给通知栏一个黑色的背景，默认隐藏 -->
+	<TextView
+		android:id="@+id/represents_the_notification_bar"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:background="@color/black"
+		app:layout_constraintTop_toTopOf="@id/image_viewer_RecyclerView"
+		android:visibility="gone"
+		tools:visibility="visible"/>
+	
+	<!-- 占位，给该控件的高度赋值为导航栏的高度，以便给导航栏一个黑色的背景，默认隐藏 -->
+	<TextView
+		android:id="@+id/represents_the_navigation_bar"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:background="@color/black"
+		app:layout_constraintBottom_toBottomOf="@id/image_viewer_RecyclerView"
+		android:visibility="gone"
+		tools:visibility="visible"/>
+	
+	<!-- 顶部返回按钮和图片信息等，默认隐藏 -->
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/image_viewer_fragment_top_information"
+		android:name="com.yuehai.pic.ui.fragment.FragmentImageViewerTopInformation"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:maxWidth="@dimen/dp_100"
-		android:maxHeight="@dimen/dp_100"
-		android:scaleType="centerCrop"
-		android:adjustViewBounds="true"
-		android:contentDescription="@string/fragment_content_all_item_imagePath"/>
+		app:layout_constraintTop_toTopOf="@id/image_viewer_RecyclerView"
+		android:visibility="gone"
+		tools:visibility="visible"
+		tools:layout="@layout/fragment_image_viewer_top_information"/>
 	
-
-</LinearLayout>
+	<!-- 底部图片操作按钮，默认隐藏 -->
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/image_viewer_fragment_bottom_operation"
+		android:name="com.yuehai.pic.ui.fragment.FragmentImageViewerBottomOperation"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="@id/image_viewer_RecyclerView"
+		android:visibility="gone"
+		tools:visibility="visible"
+		tools:layout="@layout/fragment_image_viewer_bottom_operation"/>
+	
+</androidx.constraintlayout.widget.ConstraintLayout>

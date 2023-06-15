@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	values-v27 目录：这是专门为 Android 27（即 Android Oreo）版本及更高版本的设备提供的资源值目录。
+	在这个目录中可以定义特定于 Android 27 及更高版本的资源值。这样做是为了在不同的 Android 版本上提供不同的资源配置，以适应各个版本的特性和行为变化。
+ -->
+<resources>
+	<!-- 隐藏通知栏的样式 -->
+	<style name="NoTitleBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<!--
+		    用于管理应用窗口在存在刘海屏（Display Cutout）设备上的布局行为。通过设置不同的值，可以控制应用窗口如何与刘海屏进行适配。
+		    要注意的是，windowLayoutInDisplayCutoutMode 属性的可用性取决于设备是否具有刘海屏，并且该属性仅适用于支持刘海屏的设备
+		    LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT：默认行为，窗口的内容会延伸到刘海区域，刘海区域会被遮挡。
+			LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES：窗口的内容延伸到刘海区域，刘海区域不会被遮挡。
+			LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER：窗口的内容不会延伸到刘海区域。
+			
+			在 Android 9.0（Android P）之前的版本中，没有官方支持的刘海屏幕。刘海屏幕的概念和支持是在 Android 9.0 引入的。
+			然而，一些设备制造商在 Android 9.0 之前的系统版本中就已经开始采用了刘海屏设计。这些设备制造商可能使用自定义的方式来实现刘海屏幕，并提供相应的 API 或适配方案，以便应用程序可以在这些设备上适应刘海屏幕。
+			因此，在 Android 9.0 之前的系统中，刘海屏幕的存在和支持是取决于设备制造商的实现。开发者需要查阅特定设备制造商的文档或适配指南，了解在其设备上如何适配刘海屏幕。
+			总而言之，虽然 Android 9.0 之前的官方 Android 版本没有原生支持刘海屏幕，但某些设备可能会在早期版本中引入了刘海屏幕。这些设备通常由设备制造商提供相应的适配方案。
+			如有需要，请查阅设备制造商的文档或开发者文档以获取有关刘海屏幕适配的详细信息。
+		 -->
+		<item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+	</style>
+</resources>

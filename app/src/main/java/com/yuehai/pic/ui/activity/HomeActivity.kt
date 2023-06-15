@@ -1,19 +1,25 @@
-package com.yuehai.pic
+package com.yuehai.pic.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.yuehai.pic.R
 import com.yuehai.pic.bean.global.Permissions.PERMISSIONS_STORAGE
-import com.yuehai.pic.ui.adapter.HomeContentViewPager2Adapter
+import com.yuehai.pic.ui.activity.adapter.HomeContentViewPager2Adapter
 import com.yuehai.pic.utils.CreateAlertDialogUtil
 import com.yuehai.pic.utils.PermissionUtil
+import com.yuehai.pic.utils.PictureUtil
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 /**
 @author 月海
 @create 2023/4/26 19:59
+主页面，全部图片
  */
 class HomeActivity: AppCompatActivity() {
     
@@ -54,10 +60,13 @@ class HomeActivity: AppCompatActivity() {
      * 创建翻页视图对象 ViewPager2
      */
     private fun createViewPager(){
+        // 启用协程，调用方法，获取全部图片数据
+        CoroutineScope(Dispatchers.Default).launch { PictureUtil().getImageAll(contentResolver, this) }
+        
         // 获取翻页视图对象 ViewPager2
         val viewPager = findViewById<ViewPager2>(R.id.home_ViewPager2_content)
         // 构建适配器，并传入适配器实例
-        viewPager.adapter = HomeContentViewPager2Adapter(this, contentResolver, this)
+        viewPager.adapter = HomeContentViewPager2Adapter(this)
         // 默认开始选中第几个视图
         viewPager.currentItem = 0
     

@@ -11,6 +11,6 @@ import com.yuehai.pic.R
 class FragmentContentAllHolder(view: View) : RecyclerView.ViewHolder(view) {
 	var imageView: ImageView
 	init {
-		imageView = view.findViewById(R.id.pic_item)
+		imageView = view.findViewById(R.id.thumbnail_item)
 	}
 }
