@@ -2,6 +2,12 @@ package com.yuehai.pic.utils
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapShader
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Shader
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.DisplayMetrics
 import android.util.Log
@@ -10,6 +16,11 @@ import android.view.View
 import android.view.ViewConfiguration
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
+import com.yuehai.pic.R
+import kotlin.math.min
 
 
 /**
@@ -129,8 +140,67 @@ class AppInitializer {
 		}
 	}
 	
+	/**
+	 * 设置圆形的图片 ImageView
+	 * @param originalBitmap Bitmap 对象
+	 * @return 设置为圆形之后的 Bitmap 对象
+	 */
+	fun circularImageView(originalBitmap: Bitmap): Bitmap {
+		// 1、创建一个与原始图片大小相同的空白 Bitmap 对象，用于绘制圆形图片
+		val circularBitmap = Bitmap.createBitmap(
+			originalBitmap.width,
+			originalBitmap.height,
+			Bitmap.Config.ARGB_8888
+		)
+		// 2、创建画笔对象
+		val paint = Paint()
+		
+		/**
+		 * 3、创建着色器对象，使用原始图片作为着色器
+		 * 参数 1、bitmap: Bitmap 对象，作为着色器的源图片。
+		 * 参数 2、tileX: 横向的 TileMode（平铺模式）。可选值有：
+		 *      CLAMP：拉伸最后一个像素填充剩余区域。
+		 *      REPEAT：重复平铺图片。
+		 *      MIRROR：镜像平铺图片。
+		 * 参数 3、tileY: 纵向的 TileMode（平铺模式）。可选值同上。
+		 * 参数 4、matrix: 可选参数，用于对源图片进行变换的 Matrix。
+		 */
+		val shader: Shader = BitmapShader(originalBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+		// 将着色器设置给画笔
+		paint.shader = shader
+		// 将着色器设置给画笔
+		paint.isAntiAlias = true
+		// 获取图片资源的长、宽，并取长宽中较短的一边赋值给 shortSide
+		val radiusWidth = originalBitmap.width / 2f
+		val radiusHeight = originalBitmap.height / 2f
+		val shortSide = min(radiusWidth, radiusHeight)
+		/**
+		 * 4、创建画布对象，并在其中绘制圆形图片
+		 * 参数 1、圆心的 x 坐标：即圆心在 Canvas 上的横向位置
+		 * 参数 2、圆心的 y 坐标：即圆心在 Canvas 上的纵向位置
+		 * 参数 3、圆的半径：即圆的大小，从圆心到圆周上的任意一点的距离
+		 * 参数 4、画笔 Paint：用于定义圆形的样式、颜色等属性的 Paint 对象
+		 */
+		Canvas(circularBitmap).drawCircle(radiusWidth, radiusHeight, shortSide, paint)
+		
+		return circularBitmap
+	}
 	
-	
+	/**
+	 * 设置圆角矩形的文本框
+	 * @param radius 圆角值
+	 * @param backgroundColor 颜色资源
+	 */
+	fun roundedRectangleTextView(radius: Float, backgroundColor: Int): GradientDrawable{
+		// 创建一个 GradientDrawable 对象
+		val gradientDrawable = GradientDrawable()
+		// 设置圆角半径
+		gradientDrawable.cornerRadius = radius
+		// 设置背景颜色
+		gradientDrawable.setColor(backgroundColor)
+		
+		return gradientDrawable
+	}
 	
 	
 }

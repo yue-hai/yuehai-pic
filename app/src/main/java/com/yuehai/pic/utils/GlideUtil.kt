@@ -2,6 +2,8 @@ package com.yuehai.pic.utils
 
 import android.content.ContentUris
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.provider.MediaStore
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -25,8 +27,8 @@ class GlideUtil {
 				MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
 				imageId
 			))
-			// 设置默认显示的图片
-			.placeholder(androidx.appcompat.R.drawable.abc_tab_indicator_mtrl_alpha)
+			// 设置默认显示的图片，也可以是颜色资源
+			.placeholder(ColorDrawable(Color.BLACK))
 			// 跳过内存缓存
 			.skipMemoryCache(true)
 			// 不使用磁盘缓存

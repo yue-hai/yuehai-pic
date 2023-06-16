@@ -16,6 +16,16 @@
 	<string name="tool_bar_start">开始进行分类处理</string>
 	<string name="fragment_content_all_item_imagePath">某张图片</string>
 	<string name="image_viewer_bottom_operation">返回按钮</string>
+	<string name="sidebar_menu_profile_photo">头像</string>
+	
+	<!-- 侧边栏控件 sidebar_menu 使用 -->
+	<string name="sidebar_menu_user_name">月海</string>
+	<string name="sidebar_menu_settings">设置</string>
+	<string name="sidebar_menu_exit">退出</string>
+	
+	
+	<string name="drawer_open">drawer_open</string>
+	<string name="drawer_close">drawer_close</string>
 	
 	
 	

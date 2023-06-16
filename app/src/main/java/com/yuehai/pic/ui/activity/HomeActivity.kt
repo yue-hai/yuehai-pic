@@ -2,6 +2,7 @@ package com.yuehai.pic.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -10,7 +11,7 @@ import com.yuehai.pic.bean.global.Permissions.PERMISSIONS_STORAGE
 import com.yuehai.pic.ui.activity.adapter.HomeContentViewPager2Adapter
 import com.yuehai.pic.utils.CreateAlertDialogUtil
 import com.yuehai.pic.utils.PermissionUtil
-import com.yuehai.pic.utils.PictureUtil
+import com.yuehai.pic.utils.ImageUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,13 +28,13 @@ class HomeActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
         setContentView(R.layout.activity_home)
-
+        
         // 调用封装的方法，检查并获取权限
         if (PermissionUtil().checkPermission(this, PERMISSIONS_STORAGE, 0)){
             // 调用方法，创建翻页视图对象 ViewPager2
             createViewPager()
         }
-    
+        
     }
     
     /**
@@ -61,7 +62,7 @@ class HomeActivity: AppCompatActivity() {
      */
     private fun createViewPager(){
         // 启用协程，调用方法，获取全部图片数据
-        CoroutineScope(Dispatchers.Default).launch { PictureUtil().getImageAll(contentResolver, this) }
+        CoroutineScope(Dispatchers.Default).launch { ImageUtil().getImageAll(contentResolver, this) }
         
         // 获取翻页视图对象 ViewPager2
         val viewPager = findViewById<ViewPager2>(R.id.home_ViewPager2_content)

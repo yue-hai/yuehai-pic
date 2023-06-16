@@ -1,7 +1,6 @@
 package com.yuehai.pic.utils
 
 import android.content.ContentResolver
-import android.net.Uri
 import android.provider.MediaStore
 import com.yuehai.pic.bean.ImageData
 import com.yuehai.pic.bean.global.Global.imageDataList
@@ -11,7 +10,7 @@ import kotlinx.coroutines.cancel
 /**
  * 图片工具类
  */
-class PictureUtil {
+class ImageUtil {
 	
 	/**
 	 * 查询所有图片
@@ -65,5 +64,7 @@ class PictureUtil {
 		// 取消协程
 		scope.cancel()
 	}
+	
+	
 	
 }

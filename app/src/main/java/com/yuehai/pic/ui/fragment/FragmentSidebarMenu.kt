@@ -1,11 +1,18 @@
 package com.yuehai.pic.ui.fragment
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
+import com.yuehai.pic.utils.AppInitializer
+
 
 class FragmentSidebarMenu: Fragment() {
 	
@@ -23,8 +30,36 @@ class FragmentSidebarMenu: Fragment() {
 		// 加载 Fragment 布局
 		val view = inflater.inflate(R.layout.sidebar_menu, container, false)
 		
+		// 获取头像控件
+		val profilePhoto = view.findViewById<ImageView>(R.id.sidebar_menu_profile_photo)
+		// 给控件设置资源，调用方法，并传入一个 Bitmap 对象
+		profilePhoto.setImageBitmap(AppInitializer().circularImageView(BitmapFactory.decodeResource(resources, R.drawable.software_icon)))
+		
+		// 获取用户名控件
+		val userName = view.findViewById<TextView>(R.id.sidebar_menu_user_name)
+		// 调用方法，给文本框设置圆角矩形
+		userName.background = AppInitializer().roundedRectangleTextView(20f, ContextCompat.getColor(requireContext(), R.color.yuehai_white_with_dark_blue))
+	
+		// 给设置按钮添加点击事件
+		view.findViewById<TextView>(R.id.sidebar_menu_settings).setOnClickListener { onClickListenerSettings() }
+		// 给退出按钮添加点击事件
+		view.findViewById<TextView>(R.id.sidebar_menu_exit).setOnClickListener { onClickListenerExit() }
 		
 		return view
+	}
+	
+	/**
+	 * 设置按钮，点击进入设置页面
+	 */
+	private fun onClickListenerSettings(){
+		Log.i("月海", "设置")
+	}
+	
+	/**
+	 * 关闭按钮，点击关闭软件
+	 */
+	private fun onClickListenerExit(){
+		activity?.finish()
 	}
 	
 }

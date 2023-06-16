@@ -1,26 +1,18 @@
 package com.yuehai.pic.ui.activity
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentContainerView
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.yuehai.pic.R
 import com.yuehai.pic.ui.activity.adapter.ImageViewerAdapter
-import com.yuehai.pic.ui.fragment.adapter.FragmentContentAllAdapter
 import com.yuehai.pic.utils.AppInitializer
-import com.yuehai.pic.utils.GlideUtil
-import com.yuehai.pic.utils.PictureUtil
 
 
 class ImageViewerActivity: AppCompatActivity() {

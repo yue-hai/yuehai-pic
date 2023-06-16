@@ -1,12 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 侧边栏 -->
+<!--
+    android:clickable="true"：指定视图是否可以接收点击事件
+	android:focusable="true"：指定视图是否可以获取焦点
+ -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="@dimen/dp_280"
 	android:layout_height="match_parent"
-	android:background="@color/yuehai_light_blue">
+	android:background="@color/yuehai_light_blue"
+	android:orientation="vertical"
+	android:clickable="true"
+	android:focusable="true">
 	
+	<!-- 头像 -->
+	<ImageView
+		android:id="@+id/sidebar_menu_profile_photo"
+		android:layout_width="@dimen/dp_100"
+		android:layout_height="@dimen/dp_100"
+		android:layout_gravity="center"
+		android:layout_margin="@dimen/dp_24"
+		android:src="@drawable/software_icon"
+		android:scaleType="centerCrop"
+		android:contentDescription="@string/sidebar_menu_profile_photo" />
+
+	<!-- 用户名，昵称 -->
 	<TextView
+		android:id="@+id/sidebar_menu_user_name"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:padding="@dimen/dp_10"
+		android:layout_marginBottom="@dimen/dp_24"
+		android:text="@string/sidebar_menu_user_name" />
+	
+	<!-- 下方菜单 -->
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:text="侧边栏" />
+		android:orientation="vertical"
+		android:background="@color/white">
+		
+		<!-- 设置 -->
+		<TextView
+			android:id="@+id/sidebar_menu_settings"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="@dimen/dp_20"
+			android:paddingEnd="@dimen/dp_20"
+			android:paddingTop="@dimen/dp_10"
+			android:paddingBottom="@dimen/dp_10"
+			android:textColor="@color/black"
+			android:textSize="@dimen/sp_16"
+			android:text="@string/sidebar_menu_settings"
+			android:gravity="start|center"
+			android:drawablePadding="@dimen/dp_20"
+			app:drawableStartCompat="@drawable/sidebar_menu_settings_30"
+			tools:drawableStart="@drawable/sidebar_menu_settings_30"/>
+		
+		<!-- 退出 -->
+		<TextView
+			android:id="@+id/sidebar_menu_exit"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="@dimen/dp_20"
+			android:paddingEnd="@dimen/dp_20"
+			android:paddingTop="@dimen/dp_10"
+			android:paddingBottom="@dimen/dp_10"
+			android:textColor="@color/black"
+			android:textSize="@dimen/sp_16"
+			android:text="@string/sidebar_menu_exit"
+			android:gravity="start|center"
+			android:drawablePadding="@dimen/dp_20"
+			app:drawableStartCompat="@drawable/sidebar_menu_exit_30"
+			tools:drawableStart="@drawable/sidebar_menu_exit_30"/>
+
+	</LinearLayout>
 
 </LinearLayout>

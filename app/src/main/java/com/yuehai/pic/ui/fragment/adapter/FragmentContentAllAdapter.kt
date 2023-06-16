@@ -3,6 +3,7 @@ package com.yuehai.pic.ui.fragment.adapter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -40,17 +41,7 @@ class FragmentContentAllAdapter(
 		GlideUtil().imageListThumbnail(context, (holder as FragmentContentAllHolder).imageView, imageDataList[position].id)
 
 		// 给每个视图绑定点击事件
-		holder.itemView.setOnClickListener {
-			// 向下一个 Activity 发送消息，显式 Intent 传递：在 Intent 的构造函数中指定
-			val intent = Intent(context, ImageViewerActivity().javaClass)
-			// 通过 bundle 包装数据
-			val bundle = Bundle()
-			bundle.putInt("position", position)
-			// 将 bundle 放入 intent 对象中
-			intent.putExtras(bundle)
-			// 跳转到跳转到自己定义的 activity，传递 intent 对象
-			context.startActivity(intent)
-		}
+		holder.itemView.setOnClickListener { onClickListenerItemView(position) }
 	}
 	
 	/**
@@ -72,6 +63,21 @@ class FragmentContentAllAdapter(
 	 */
 	override fun getItemCount(): Int {
 		return imageDataList.size
+	}
+	
+	/**
+	 * 每个视图的点击事件
+	 */
+	private fun onClickListenerItemView(position: Int){
+		// 向下一个 Activity 发送消息，显式 Intent 传递：在 Intent 的构造函数中指定
+		val intent = Intent(context, ImageViewerActivity().javaClass)
+		// 通过 bundle 包装数据
+		val bundle = Bundle()
+		bundle.putInt("position", position)
+		// 将 bundle 放入 intent 对象中
+		intent.putExtras(bundle)
+		// 跳转到跳转到自己定义的 activity，传递 intent 对象
+		context.startActivity(intent)
 	}
 	
 }

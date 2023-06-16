@@ -26,16 +26,19 @@ class FragmentToolBar: Fragment() {
 		// 加载 Fragment 布局
 		val view = inflater.inflate(R.layout.fragment_tool_bar, container, false)
 		
-		// 给 Fragment 的按钮添加事件
+		// 给菜单按钮添加点击事件
 		view.findViewById<ImageButton>(R.id.tool_bar_settings_menu).setOnClickListener { onClickListenerSettingsMenu() }
+		// 给排序按钮添加点击事件
 		view.findViewById<ImageButton>(R.id.tool_bar_sort).setOnClickListener { onClickListenerSort() }
+		// 给搜索按钮添加点击事件
 		view.findViewById<ImageButton>(R.id.tool_bar_search).setOnClickListener { onClickListenerSearch() }
+		// 给开始按钮添加点击事件
 		view.findViewById<ImageButton>(R.id.tool_bar_start).setOnClickListener { onClickListenerStart() }
 		
 		return view
 	}
 	
-	// 设置菜单。点击打开侧边栏
+	// 菜单按钮，点击打开侧边栏
 	private fun onClickListenerSettingsMenu(){
 		// 获取 DrawerLayout 整体布局
 		val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_menu)

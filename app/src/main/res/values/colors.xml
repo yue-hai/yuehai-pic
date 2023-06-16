@@ -15,5 +15,7 @@
 	<color name="yuehai_light_blue">#7187f4</color>
 	<!-- 白色配浅蓝色：未选中导航栏使用的颜色 -->
 	<color name="yuehai_white_with_light_blue">#c4d1ff</color>
+	<!-- 有点深的蓝色：侧边栏的用户名使用的背景色 -->
+	<color name="yuehai_white_with_dark_blue">#637ad8</color>
 	
 </resources>

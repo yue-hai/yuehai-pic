@@ -1,6 +1,7 @@
 package com.yuehai.pic.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,15 +25,17 @@ class FragmentImageViewerTopInformation : Fragment() {
 		// 加载 Fragment 布局
 		val view = inflater.inflate(R.layout.fragment_image_viewer_top_information, container, false)
 		
-		// 获取返回按钮
-		val backButton = view.findViewById<ImageButton>(R.id.top_information_back_button)
-		// 给返回按钮绑定点击事件，关闭该 activity
-		backButton.setOnClickListener {
-			activity?.finish()
-		}
-		
-		
+		// 给返回按钮绑定点击事件
+		view.findViewById<ImageButton>(R.id.top_information_back_button).setOnClickListener { onClickListenerBackButton() }
+
 		return view
+	}
+	
+	/**
+	 * 设置返回，点击退出详情页，关闭该 activity
+	 */
+	private fun onClickListenerBackButton(){
+		activity?.finish()
 	}
 	
 }

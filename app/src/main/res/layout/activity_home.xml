@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
+	主页
+	
 	DrawerLayout 是 Android 中的一个布局容器，用于实现侧滑菜单的效果。
 	它是 Android Support 库中提供的一个组件，用于创建具有可滑动抽屉式导航菜单的界面布局
 	其中想要作为侧边栏的布局可使用属性 layout_gravity="start" 来指定，start 表示将从左边划出
