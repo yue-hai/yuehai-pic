@@ -26,7 +26,7 @@ class FragmentImageViewerTopInformation : Fragment() {
 		val view = inflater.inflate(R.layout.fragment_image_viewer_top_information, container, false)
 		
 		// 给返回按钮绑定点击事件
-		view.findViewById<ImageButton>(R.id.top_information_back_button).setOnClickListener { onClickListenerBackButton() }
+		view.findViewById<ImageButton>(R.id.top_information_exit).setOnClickListener { onClickListenerExit() }
 
 		return view
 	}
@@ -34,7 +34,7 @@ class FragmentImageViewerTopInformation : Fragment() {
 	/**
 	 * 设置返回，点击退出详情页，关闭该 activity
 	 */
-	private fun onClickListenerBackButton(){
+	private fun onClickListenerExit(){
 		activity?.finish()
 	}
 	

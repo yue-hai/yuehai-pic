@@ -53,7 +53,7 @@ class GlideUtil {
 					imageId
 				))
 			// 设置默认显示的图片
-			.placeholder(androidx.appcompat.R.drawable.abc_tab_indicator_mtrl_alpha)
+			.placeholder(ColorDrawable(Color.BLACK))
 			// 跳过内存缓存
 			.skipMemoryCache(true)
 			// 不使用磁盘缓存

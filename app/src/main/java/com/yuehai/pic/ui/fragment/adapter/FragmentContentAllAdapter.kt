@@ -76,7 +76,7 @@ class FragmentContentAllAdapter(
 		bundle.putInt("position", position)
 		// 将 bundle 放入 intent 对象中
 		intent.putExtras(bundle)
-		// 跳转到跳转到自己定义的 activity，传递 intent 对象
+		// 跳转到自己定义的 activity，传递 intent 对象
 		context.startActivity(intent)
 	}
 	

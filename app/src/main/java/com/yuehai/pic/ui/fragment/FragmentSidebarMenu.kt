@@ -1,16 +1,21 @@
 package com.yuehai.pic.ui.fragment
 
+import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
+import com.yuehai.pic.ui.activity.SettingsActivity
 import com.yuehai.pic.utils.AppInitializer
 
 
@@ -29,30 +34,31 @@ class FragmentSidebarMenu: Fragment() {
 		
 		// 加载 Fragment 布局
 		val view = inflater.inflate(R.layout.sidebar_menu, container, false)
+
+		// 调用方法，判断是否是深色模式，是的话改变控件背景颜色、字体颜色、状态选择器颜色
+		darkModeChangeControl(view)
 		
-		// 获取头像控件
-		val profilePhoto = view.findViewById<ImageView>(R.id.sidebar_menu_profile_photo)
-		// 给控件设置资源，调用方法，并传入一个 Bitmap 对象
-		profilePhoto.setImageBitmap(AppInitializer().circularImageView(BitmapFactory.decodeResource(resources, R.drawable.software_icon)))
+		// 给头像控件设置资源，调用方法，并传入一个 Bitmap 对象
+		view.findViewById<ImageView>(R.id.sidebar_menu_profile_photo).setImageBitmap(AppInitializer().circularImageView(BitmapFactory.decodeResource(resources, R.drawable.software_icon)))
 		
-		// 获取用户名控件
-		val userName = view.findViewById<TextView>(R.id.sidebar_menu_user_name)
-		// 调用方法，给文本框设置圆角矩形
-		userName.background = AppInitializer().roundedRectangleTextView(20f, ContextCompat.getColor(requireContext(), R.color.yuehai_white_with_dark_blue))
+		// 调用方法，给用户名控件文本框设置圆角矩形和背景色
+		view.findViewById<TextView>(R.id.sidebar_menu_user_name).background = AppInitializer().roundedRectangleTextView(20f, getColor(requireContext(), R.color.yuehai_light_blue_slightly_dark))
 	
 		// 给设置按钮添加点击事件
 		view.findViewById<TextView>(R.id.sidebar_menu_settings).setOnClickListener { onClickListenerSettings() }
+		
 		// 给退出按钮添加点击事件
 		view.findViewById<TextView>(R.id.sidebar_menu_exit).setOnClickListener { onClickListenerExit() }
 		
 		return view
 	}
-	
+
 	/**
 	 * 设置按钮，点击进入设置页面
 	 */
 	private fun onClickListenerSettings(){
-		Log.i("月海", "设置")
+		// 跳转到设置页面
+		context?.startActivity(Intent(context, SettingsActivity().javaClass))
 	}
 	
 	/**
@@ -60,6 +66,27 @@ class FragmentSidebarMenu: Fragment() {
 	 */
 	private fun onClickListenerExit(){
 		activity?.finish()
+	}
+	
+	/**
+	 * 判断是否是深色模式，是的话改变控件背景颜色、字体颜色、状态选择器颜色
+	 */
+	private fun darkModeChangeControl(view: View){
+		// 判断是否是深色模式
+		if (( requireContext().resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_YES) ) !=0){
+			// 修改菜单列表的背景颜色
+			view.findViewById<LinearLayout>(R.id.sidebar_menu_control_list).setBackgroundColor(Color.BLACK)
+			// 修改设置按钮的字体颜色和状态选择器
+			with(view.findViewById<TextView>(R.id.sidebar_menu_settings)){
+				setTextColor(Color.WHITE)
+				setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			}
+			// 修改退出按钮的字体颜色和状态选择器
+			with(view.findViewById<TextView>(R.id.sidebar_menu_exit)){
+				setTextColor(Color.WHITE)
+				setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			}
+		}
 	}
 	
 }

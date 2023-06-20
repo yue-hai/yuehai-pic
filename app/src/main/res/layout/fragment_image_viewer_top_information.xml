@@ -8,8 +8,8 @@
 	
 	<!-- 返回按钮 -->
 	<ImageButton
-		android:id="@+id/top_information_back_button"
-		android:src="@drawable/image_details_arrow_back_24"
+		android:id="@+id/top_information_exit"
+		android:src="@drawable/icon_image_details_arrow_back_24"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"

@@ -51,6 +51,14 @@
 			android:theme="@style/NoTitleBarTheme">
 		</activity>
 		
+		<!-- 注册设置窗口 -->
+		<activity
+			android:name=".ui.activity.SettingsActivity"
+			android:exported="true"
+			android:launchMode="standard"
+			android:theme="@style/Theme.Y_pic">
+		</activity>
+		
 	</application>
 
 </manifest>

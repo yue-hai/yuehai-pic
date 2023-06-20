@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 浅色模式下，侧边栏状态列表 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- 按下时显示的图片 -->
+	<item android:state_pressed="true" android:drawable="@drawable/shape_sidebar_menu_background_press_dark_mode" />
+	<!-- 默认显示的图片 -->
+	<item android:drawable="@drawable/shape_sidebar_menu_background_default_dark_mode" />
+</selector>

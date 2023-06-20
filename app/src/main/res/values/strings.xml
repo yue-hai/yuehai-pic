@@ -23,10 +23,12 @@
 	<string name="sidebar_menu_settings">设置</string>
 	<string name="sidebar_menu_exit">退出</string>
 	
-	
-	<string name="drawer_open">drawer_open</string>
-	<string name="drawer_close">drawer_close</string>
-	
+	<!-- 设置页面使用 -->
+	<string name="settings_convention">常规</string>
+	<string name="settings_page">页面</string>
+	<string name="settings_loading_caching">加载及缓存</string>
+	<string name="settings_loading_caching_cache_loading_strategy">缓存加载策略</string>
+	<string name="settings_loading_caching_cache_loading_strategy_description">配置缓存加载策略，影响图片的载入速度和软件使用的存储空间</string>
 	
 	
 </resources>

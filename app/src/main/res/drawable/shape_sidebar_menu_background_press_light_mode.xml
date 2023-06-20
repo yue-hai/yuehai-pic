@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 浅色模式下，侧边栏按下背景 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- 指定了形状内部的填充颜色 -->
+	<solid android:color="@color/yuehai_light_gray" />
+</shape>
