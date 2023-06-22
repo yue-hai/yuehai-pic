@@ -5,7 +5,6 @@ import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,7 +74,7 @@ class FragmentSidebarMenu: Fragment() {
 		// 判断是否是深色模式
 		if (( requireContext().resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_YES) ) !=0){
 			// 修改菜单列表的背景颜色
-			view.findViewById<LinearLayout>(R.id.sidebar_menu_control_list).setBackgroundColor(Color.BLACK)
+			view.findViewById<LinearLayout>(R.id.sidebar_menu_control_list).setBackgroundColor(getColor(requireContext(), R.color.yuehai_dark_background))
 			// 修改设置按钮的字体颜色和状态选择器
 			with(view.findViewById<TextView>(R.id.sidebar_menu_settings)){
 				setTextColor(Color.WHITE)

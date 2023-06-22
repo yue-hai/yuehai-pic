@@ -49,14 +49,19 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:padding="@dimen/dp_10"
+		android:background="@drawable/selector_sidebar_menu_light_mode"
+		android:clickable="true"
+		android:focusable="true"
 		android:orientation="vertical">
 		<TextView
+			android:id="@+id/settings_loading_caching_cache_loading_strategy_option"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/settings_loading_caching_cache_loading_strategy"
 			android:textSize="@dimen/sp_16"
 			android:textColor="@color/black"/>
 		<TextView
+			android:id="@+id/settings_loading_caching_cache_loading_strategy_descriptio"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/settings_loading_caching_cache_loading_strategy_description"

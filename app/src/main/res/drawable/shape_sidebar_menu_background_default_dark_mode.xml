@@ -2,5 +2,5 @@
 <!-- 浅色模式下，侧边栏默认背景 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- 指定了形状内部的填充颜色 -->
-	<solid android:color="@color/black" />
+	<solid android:color="@color/yuehai_dark_background" />
 </shape>

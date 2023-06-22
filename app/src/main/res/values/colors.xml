@@ -26,4 +26,7 @@
 	<!-- 有点浅的深灰色：设置页面的选项说明使用 -->
 	<color name="yuehai_dark_gray_slightly_light">#949494</color>
 	
+	<!-- 深色模式下的背景 -->
+	<color name="yuehai_dark_background">#111111</color>
+	
 </resources>
