@@ -75,11 +75,13 @@ class FragmentSidebarMenu: Fragment() {
 		if (( requireContext().resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_YES) ) !=0){
 			// 修改菜单列表的背景颜色
 			view.findViewById<LinearLayout>(R.id.sidebar_menu_control_list).setBackgroundColor(getColor(requireContext(), R.color.yuehai_dark_background))
+			
 			// 修改设置按钮的字体颜色和状态选择器
 			with(view.findViewById<TextView>(R.id.sidebar_menu_settings)){
 				setTextColor(Color.WHITE)
 				setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
 			}
+			
 			// 修改退出按钮的字体颜色和状态选择器
 			with(view.findViewById<TextView>(R.id.sidebar_menu_exit)){
 				setTextColor(Color.WHITE)

@@ -5,56 +5,40 @@
 	android:layout_height="@dimen/dp_50"
 	android:orientation="horizontal"
 	android:background="@color/yuehai_light_blue"
-	android:weightSum="8">
+	android:weightSum="10">
 
 	<!-- 设置菜单 -->
 	<ImageButton
 		android:id="@+id/tool_bar_settings_menu"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
 		android:src="@drawable/icon_tool_bar_settings_menu_24"
-		android:gravity="center"
-		android:layout_weight="1"
-		style="?android:attr/buttonBarButtonStyle"
-		android:contentDescription="@string/tool_bar_settings_menu" />
+		android:contentDescription="@string/tool_bar_settings_menu"
+		style="@style/ToolBarImageButton"/>
 	
 	<!-- 占位，用来将后面的控件挤到右边 -->
 	<TextView
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_weight="4" />
+		android:layout_weight="6" />
 	
 	<!-- 排序按钮 -->
 	<ImageButton
 		android:id="@+id/tool_bar_sort"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
 		android:src="@drawable/icon_tool_bar_sort_24"
-		android:gravity="center"
-		android:layout_weight="1"
-		style="?android:attr/buttonBarButtonStyle"
-		android:contentDescription="@string/tool_bar_sort" />
+		android:contentDescription="@string/tool_bar_sort"
+		style="@style/ToolBarImageButton"/>
 	
 	<!-- 搜索按钮 -->
 	<ImageButton
 		android:id="@+id/tool_bar_search"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
 		android:src="@drawable/icon_tool_bar_search_24"
-		android:gravity="center"
-		android:layout_weight="1"
-		style="?android:attr/buttonBarButtonStyle"
-		android:contentDescription="@string/tool_bar_search" />
+		android:contentDescription="@string/tool_bar_search"
+		style="@style/ToolBarImageButton"/>
 	
 	<!-- 开始按钮 -->
 	<ImageButton
 		android:id="@+id/tool_bar_start"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
 		android:src="@drawable/icon_tool_bar_start_24"
-		android:gravity="center"
-		android:layout_weight="1"
-		style="?android:attr/buttonBarButtonStyle"
-		android:contentDescription="@string/tool_bar_settings_menu" />
+		android:contentDescription="@string/tool_bar_settings_menu"
+		style="@style/ToolBarImageButton"/>
 
 </LinearLayout>

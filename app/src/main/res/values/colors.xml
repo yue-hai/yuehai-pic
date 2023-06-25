@@ -11,10 +11,13 @@
 	<color name="orange">#FFA500</color>
 	<color name="transparent">#00FF0000</color>
 	
-	<!-- 淡蓝色；主题色 -->
+	<!-- 浅蓝色；主题色 -->
 	<color name="yuehai_light_blue">#7187f4</color>
-	<!-- 白色配浅蓝色：未选中导航栏使用的颜色 -->
+	<!-- 更浅一些的浅蓝色；顶部按钮选中时得背景色 -->
+	<color name="yuehai_light_blue_slightly_light">#889cf2</color>
+	<!-- 白色配浅蓝色：未选中导航栏文字使用的颜色 -->
 	<color name="yuehai_white_with_light_blue">#c4d1ff</color>
+	
 	
 	<!-- 有点深的蓝色：侧边栏的用户名使用的背景色 -->
 	<color name="yuehai_light_blue_slightly_dark">#637ad8</color>

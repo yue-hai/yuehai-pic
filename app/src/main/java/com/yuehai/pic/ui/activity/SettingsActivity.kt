@@ -35,6 +35,9 @@ class SettingsActivity: AppCompatActivity() {
 	private fun darkModeChangeControl(){
 		// 判断是否是深色模式
 		if ((resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_YES) ) !=0){
+			// 背景颜色
+			findViewById<LinearLayout>(R.id.settings).setBackgroundResource(R.color.yuehai_dark_background)
+			
 			// 缓存加载策略状态选择器、字体颜色
 			findViewById<LinearLayout>(R.id.settings_loading_caching_cache_loading_strategy).setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
 			findViewById<TextView>(R.id.settings_loading_caching_cache_loading_strategy_option).setTextColor(Color.WHITE)

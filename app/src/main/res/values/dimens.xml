@@ -12,7 +12,7 @@
 	<dimen name="dp_280">280dp</dimen>
 	
 	<!-- 字体尺寸 -->
-	<dimen name="sp_5">12sp</dimen>
+	<dimen name="sp_12">12sp</dimen>
 	<dimen name="sp_16">16sp</dimen>
 	<dimen name="sp_50">50sp</dimen>
 	
