@@ -8,6 +8,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.yuehai.pic.R
+import com.yuehai.pic.utils.CreateAlertDialogUtil
+
 
 /**
  * 设置页 Activity
@@ -23,6 +25,9 @@ class SettingsActivity: AppCompatActivity() {
 		
 		// 给返回按钮绑定点击事件
 		findViewById<ImageButton>(R.id.settings_exit).setOnClickListener { onClickListenerExit() }
+		
+		// 给缓存加载策略选项绑定点击事件
+		findViewById<LinearLayout>(R.id.settings_loading_caching_cache_loading_strategy).setOnClickListener { onClickListenerCacheLoadingStrategy() }
 	}
 	
 	/**
@@ -30,6 +35,14 @@ class SettingsActivity: AppCompatActivity() {
 	 */
 	private fun onClickListenerExit(){
 		finish()
+	}
+	
+	/**
+	 * 给缓存加载策略选项绑定点击事件，点击时弹出弹窗，进行选择
+	 */
+	private fun onClickListenerCacheLoadingStrategy(){
+		// 调用方法，显示选择缓存加载策略单选框
+		CreateAlertDialogUtil().selectCacheLoadingStrategyDialog(this)
 	}
 
 	/**
@@ -46,4 +59,5 @@ class SettingsActivity: AppCompatActivity() {
 			findViewById<TextView>(R.id.settings_loading_caching_cache_loading_strategy_option).setTextColor(Color.WHITE)
 		}
 	}
+
 }

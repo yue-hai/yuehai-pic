@@ -2,13 +2,13 @@ package com.yuehai.pic.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yuehai.pic.R
 import com.yuehai.pic.bean.global.Permissions.PERMISSIONS_STORAGE
 import com.yuehai.pic.ui.activity.adapter.HomeContentViewPager2Adapter
+import com.yuehai.pic.utils.AppInitializer
 import com.yuehai.pic.utils.CreateAlertDialogUtil
 import com.yuehai.pic.utils.PermissionUtil
 import com.yuehai.pic.utils.ImageUtil
@@ -31,6 +31,8 @@ class HomeActivity: AppCompatActivity() {
         
         // 调用封装的方法，检查并获取权限
         if (PermissionUtil().checkPermission(this, PERMISSIONS_STORAGE, 0)){
+            // 调用方法，初始化应用数据
+            AppInitializer().initializeApplicationData(this)
             // 调用方法，创建翻页视图对象 ViewPager2
             createViewPager()
         }

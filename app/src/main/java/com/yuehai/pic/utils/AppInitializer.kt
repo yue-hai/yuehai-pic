@@ -10,16 +10,10 @@ import android.graphics.Shader
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.DisplayMetrics
-import android.util.Log
-import android.view.Display
 import android.view.View
-import android.view.ViewConfiguration
 import android.view.WindowInsets
-import android.view.WindowManager
-import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import com.yuehai.pic.R
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.yuehai.pic.bean.global.Config
 import kotlin.math.min
 
 
@@ -27,6 +21,25 @@ import kotlin.math.min
  * 软件初始化工具类
  */
 class AppInitializer {
+	
+	/**
+	 * 初始化应用数据
+	 * @param context Activity
+	 */
+	fun initializeApplicationData(context : Context){
+		// 获取 SharedPreferences 对象
+		val sharedPreferences = context.getSharedPreferences("yuehai-pic", Context.MODE_PRIVATE)
+		
+		// 设置缓存加载策略，默认为不使用磁盘缓存
+		when(sharedPreferences.getInt("select_cache_loading_strategy", 1)){
+			0 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL }
+			1 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.NONE }
+			2 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.DATA }
+			3 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.RESOURCE }
+			4 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.AUTOMATIC }
+		}
+		
+	}
 	
 	/**
 	 * 判断当前通知栏和导航栏是否显示
