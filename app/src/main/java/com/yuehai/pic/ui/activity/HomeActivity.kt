@@ -18,9 +18,9 @@ import kotlinx.coroutines.launch
 
 
 /**
-@author 月海
-@create 2023/4/26 19:59
-主页面，全部图片
+ * @author 月海
+ * @create 2023/4/26 19:59
+ * 主页面，全部图片
  */
 class HomeActivity: AppCompatActivity() {
     

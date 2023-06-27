@@ -11,6 +11,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
 
+/**
+ * 主页顶部操作栏
+ */
 class FragmentToolBar: Fragment() {
 	
 	/**

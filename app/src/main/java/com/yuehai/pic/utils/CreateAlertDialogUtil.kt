@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import com.yuehai.pic.R
 import com.yuehai.pic.ui.activity.HomeActivity
 import kotlin.system.exitProcess
 
@@ -43,9 +44,9 @@ class CreateAlertDialogUtil {
 		 * 当用户点击确定按钮时，which 的值为 DialogInterface.BUTTON_POSITIVE（-1），
 		 * 当用户点击取消按钮时，which 的值为 DialogInterface.BUTTON_NEGATIVE（-2）
 		 */
-		.setPositiveButton("确定", buttonListener)
+		.setPositiveButton(context.getString(R.string.alert_dialog_positive), buttonListener)
 		// 设置对话框的否定按钮文本及其点击监听器
-		.setNegativeButton("取消", buttonListener)
+		.setNegativeButton(context.getString(R.string.alert_dialog_negative), buttonListener)
 		
 		// 根据建造器构建提醒对话框对象
 		val alertDialog = builder.create()
@@ -58,14 +59,11 @@ class CreateAlertDialogUtil {
 	 * 获取存储卡读写权限失败提示框
 	 */
 	fun storagePermissionErrorDialog(context: Context){
-		val title: String = "获取存储卡读写权限失败"
-		val message: String = """
-                这是一个图片管理器
-                没有权限就做不到任何事情
-                重启软件可以重新获取权限
-                点击确定按钮重新启动软件
-                点击取消按钮不会发生任何事
-            """.trimIndent()
+		// 标题
+		val title: String = context.getString(R.string.alert_dialog_title_storage_permission_error)
+		// 内容
+		val message: String = context.getString(R.string.alert_dialog_message_storage_permission_error)
+		// 确定与取消按钮
 		val buttonListener = DialogInterface.OnClickListener { dialog, which ->
 			when (which) {
 				// 处理确定按钮点击事件的逻辑

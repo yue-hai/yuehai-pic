@@ -30,5 +30,12 @@
 	<string name="settings_loading_caching_cache_loading_strategy">缓存加载策略</string>
 	<string name="settings_loading_caching_cache_loading_strategy_description">配置缓存加载策略，影响图片的载入速度和软件使用的存储空间</string>
 	
+	<!-- 对话框使用，确定与取消按钮 -->
+	<string name="alert_dialog_positive">确定</string>
+	<string name="alert_dialog_negative">取消</string>
+	<!-- 对话框使用，标题 -->
+	<string name="alert_dialog_title_storage_permission_error">获取存储卡读写权限失败</string>
+	<!-- 对话框使用，内容 -->
+	<string name="alert_dialog_message_storage_permission_error">这是一个图片管理器\n没有权限就做不到任何事情\n重启软件可以重新获取权限\n点击确定按钮重新启动软件\n点击取消按钮不会发生任何事</string>
 	
 </resources>

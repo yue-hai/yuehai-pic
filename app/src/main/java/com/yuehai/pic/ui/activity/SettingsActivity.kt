@@ -9,6 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.yuehai.pic.R
 
+/**
+ * 设置页 Activity
+ */
 class SettingsActivity: AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

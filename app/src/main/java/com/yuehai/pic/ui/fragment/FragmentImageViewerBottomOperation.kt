@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
 
+/**
+ * 图片详情页的底部操作栏
+ */
 class FragmentImageViewerBottomOperation : Fragment() {
 	
 	/**

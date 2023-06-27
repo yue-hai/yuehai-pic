@@ -15,7 +15,9 @@ import com.yuehai.pic.ui.activity.ImageViewerActivity
 import com.yuehai.pic.ui.fragment.adapter.holder.FragmentContentAllHolder
 import com.yuehai.pic.utils.GlideUtil
 
-
+/**
+ * 主体内容：全部的 RecyclerView 动态列表适配器
+ */
 class FragmentContentAllAdapter(
 	// 上下文环境
 	private var context: Context

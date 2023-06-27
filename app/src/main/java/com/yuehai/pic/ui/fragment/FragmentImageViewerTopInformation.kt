@@ -9,6 +9,9 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
 
+/**
+ * 图片详情页的顶部操作栏
+ */
 class FragmentImageViewerTopInformation : Fragment() {
 	
 	/**

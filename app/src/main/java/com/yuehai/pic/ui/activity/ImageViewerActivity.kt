@@ -14,7 +14,9 @@ import com.yuehai.pic.R
 import com.yuehai.pic.ui.activity.adapter.ImageViewerAdapter
 import com.yuehai.pic.utils.AppInitializer
 
-
+/**
+ * 图片详情页 Activity
+ */
 class ImageViewerActivity: AppCompatActivity() {
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
