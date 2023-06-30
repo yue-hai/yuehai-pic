@@ -9,6 +9,7 @@ import android.graphics.Paint
 import android.graphics.Shader
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
+import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowInsets
@@ -37,6 +38,14 @@ class AppInitializer {
 			2 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.DATA }
 			3 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.RESOURCE }
 			4 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.AUTOMATIC }
+		}
+		
+		// 设置排序
+		when(sharedPreferences.getInt("select_sort_method", 0)){
+			0 -> { Config.SORT_METHOD = MediaStore.Files.FileColumns.DATE_ADDED + " DESC" }
+			1 -> { Config.SORT_METHOD = MediaStore.Files.FileColumns.DATE_ADDED + " ASC" }
+			2 -> { Config.SORT_METHOD = MediaStore.Files.FileColumns.TITLE + " DESC" }
+			3 -> { Config.SORT_METHOD = MediaStore.Files.FileColumns.TITLE + " ASC" }
 		}
 		
 	}

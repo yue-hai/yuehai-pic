@@ -18,6 +18,9 @@ import com.yuehai.pic.utils.ListenerUtil
 // 主体内容：全部
 class FragmentContentAll: Fragment() {
 	
+	// 定义适配器，便于其他方法的使用
+	var adapter: FragmentContentAllAdapter? = null
+	
 	/**
 	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
 	 *
@@ -45,8 +48,11 @@ class FragmentContentAll: Fragment() {
 		 */
 		recyclerView.layoutManager = GridLayoutManager(context, 4, LinearLayoutManager.VERTICAL, false)
 		
+		// 实例化适配器
+		adapter = FragmentContentAllAdapter(requireContext())
+		
 		// 设置适配器；调用方法获取全部图片信息
-		recyclerView.adapter = FragmentContentAllAdapter(requireContext())
+		recyclerView.adapter = adapter
 		
 		// 关闭更改动画
 		(recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
@@ -73,5 +79,22 @@ class FragmentContentAll: Fragment() {
 		return view
 	}
 	
+	/**
+	 * 刷新当前显示的区域
+	 */
+	fun refreshDisplayArea(){
+		// 获取 RecyclerView 控件对象，=
+		val layoutManager = view?.findViewById<RecyclerView>(R.id.fragment_content_all_item_RecyclerView)?.layoutManager as GridLayoutManager
+		// 获取第一个可见项的索引
+		val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+		// 获取最后一个可见项的索引
+		val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+		/**
+		 * 刷新当前所有可见项，未显示的位置，等用户滑到的时候就已经改变了
+		 * 参数 1：要刷新的元素的首个索引
+		 * 参数 2：要刷新的元素的个数
+		 */
+		adapter?.notifyItemRangeChanged(firstVisibleItemPosition, lastVisibleItemPosition - firstVisibleItemPosition + 1)
+	}
 	
 }

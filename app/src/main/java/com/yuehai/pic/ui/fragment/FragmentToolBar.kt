@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
+import com.yuehai.pic.utils.CreateAlertDialogUtil
 
 /**
  * 主页顶部操作栏
@@ -49,9 +50,10 @@ class FragmentToolBar: Fragment() {
 		drawerLayout?.openDrawer(GravityCompat.START)
 	}
 	
-	// 排序按钮
+	// 排序按钮，点击弹出排序方式选择弹窗
 	private fun onClickListenerSort(){
-		Log.i("工具栏", "排序按钮")
+		// 调用方法，弹出排序方式选择弹窗，传入在点击事件中获取的点击位置的坐标
+		CreateAlertDialogUtil().selectSortMethodDialog(requireContext())
 	}
 	
 	// 搜索按钮

@@ -36,6 +36,7 @@
 	<!-- 对话框使用，标题 -->
 	<string name="alert_dialog_title_storage_permission_error">获取存储卡读写权限失败</string>
 	<string name="alert_dialog_title_select_cache_loading_strategy">选择缓存加载策略</string>
+	<string name="alert_dialog_title_select_sort_method">选择排序方式</string>
 	<!-- 对话框使用，内容 -->
 	<string name="alert_dialog_content_storage_permission_error">这是一个图片管理器\n没有权限就做不到任何事情\n重启软件可以重新获取权限\n点击确定按钮重新启动软件\n点击取消按钮不会发生任何事</string>
 	<string-array name="alert_dialog_content_select_cache_loading_strategy_option">
@@ -44,6 +45,12 @@
 		<item>只缓存原始图像数据</item>
 		<item>只缓存转换后的图像</item>
 		<item>自动选择</item>
+	</string-array>
+	<string-array name="alert_dialog_content_select_sort_method_option">
+		<item>按时间降序</item>
+		<item>按时间升序</item>
+		<item>按名称降序</item>
+		<item>按名称升序</item>
 	</string-array>
 	<string-array name="alert_dialog_content_select_cache_loading_strategy_description">
 		<item>DiskCacheStrategy.ALL: 全部缓存。它会将原始图像和转换后的图像都缓存在磁盘上。这是最常见的策略，因为它允许在需要时快速加载图像，并在离线时仍然可用。</item>

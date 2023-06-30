@@ -3,9 +3,8 @@ package com.yuehai.pic.utils
 import android.content.ContentResolver
 import android.provider.MediaStore
 import com.yuehai.pic.bean.ImageData
+import com.yuehai.pic.bean.global.Config.SORT_METHOD
 import com.yuehai.pic.bean.global.Global.imageDataList
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
 
 /**
  * 图片工具类
@@ -15,14 +14,12 @@ class ImageUtil {
 	/**
 	 * 查询所有图片
 	 * @param contentResolver 内容提供器
-	 * @param scope 协程对象
-	 * @param sortOrder 排序方式，默认按时间降序
 	 */
 	fun getImageAll(
-		contentResolver: ContentResolver,
-		scope: CoroutineScope,
-		sortOrder: String = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
+		contentResolver: ContentResolver
 	){
+		// 清空集合中的数据
+		imageDataList.clear()
 
 		/**
 		 * 通过 contentResolver.query() 方法可以查询 MediaStore 数据库，这个方法接收五个参数：
@@ -44,7 +41,7 @@ class ImageUtil {
 			arrayOf(MediaStore.Images.Media._ID),
 			null,
 			null,
-			sortOrder
+			SORT_METHOD
 		)
 		
 		// 如果查询到了数据
@@ -61,8 +58,6 @@ class ImageUtil {
 		
 		// 关闭 cursor
 		cursor.close()
-		// 取消协程
-		scope.cancel()
 	}
 	
 	

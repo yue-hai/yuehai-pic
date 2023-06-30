@@ -12,9 +12,6 @@ import com.yuehai.pic.utils.AppInitializer
 import com.yuehai.pic.utils.CreateAlertDialogUtil
 import com.yuehai.pic.utils.PermissionUtil
 import com.yuehai.pic.utils.ImageUtil
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 /**
@@ -63,8 +60,8 @@ class HomeActivity: AppCompatActivity() {
      * 创建翻页视图对象 ViewPager2
      */
     private fun createViewPager(){
-        // 启用协程，调用方法，获取全部图片数据
-        CoroutineScope(Dispatchers.Default).launch { ImageUtil().getImageAll(contentResolver, this) }
+        // 调用方法，获取全部图片数据
+        ImageUtil().getImageAll(contentResolver)
         
         // 获取翻页视图对象 ViewPager2
         val viewPager = findViewById<ViewPager2>(R.id.home_ViewPager2_content)

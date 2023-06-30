@@ -1,5 +1,6 @@
 package com.yuehai.pic.bean.global
 
+import android.provider.MediaStore
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 /**
@@ -18,4 +19,13 @@ object Config {
 	 */
 	var GLIDE_DISK_CACHE_STRATEGY: DiskCacheStrategy = DiskCacheStrategy.NONE
 	
+	/**
+	 * 图片排序方式，默认按时间降序
+	 *
+	 * 按时间降序：MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
+	 * 按时间升序：MediaStore.Files.FileColumns.DATE_ADDED + " ASC"
+	 * 按名称降序：MediaStore.Files.FileColumns.TITLE + " DESC"
+	 * 按名称升序：MediaStore.Files.FileColumns.TITLE + " ASC"
+	 */
+	var SORT_METHOD:String = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
 }
