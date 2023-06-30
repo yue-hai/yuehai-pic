@@ -23,14 +23,18 @@ class ImageViewerActivity: AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
 		setContentView(R.layout.activity_image_viewer)
+		/**
+		 * 应用 activity 跳转动画
+		 * 参数 1：要进入的的 activity 的进入动画，为 0 则为没有任何动画效果
+		 * 参数 2：当前的 activity 的退出动画，为 0 则为没有任何动画效果
+		 */
+		overridePendingTransition(R.anim.image_details_enter, 0)
 		
 		/**
 		 * 允许让状态栏和导航栏区域也显示本软件的内容，同时会让状态栏和导航栏变透明，无法改变其颜色
 		 * WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS 标志位。该标志位允许布局延伸到屏幕边界，包括状态栏和导航栏区域
 		 */
 		window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-		// 调用方法，隐藏状态栏
-		AppInitializer().hideStatusBar(this)
 		
 		// 通过 intent 获取上个 Activity 发送的消息
 		val position = intent.extras!!.getInt("position")
@@ -73,8 +77,19 @@ class ImageViewerActivity: AppCompatActivity() {
 		val bottomOperationBarLayoutParams = bottomOperation.layoutParams as ConstraintLayout.LayoutParams
 		bottomOperationBarLayoutParams.bottomMargin = navigationBarHeight
 		bottomOperation.layoutParams = bottomOperationBarLayoutParams
-
-		
+	}
+	
+	/**
+	 * 当用户按下 back 键时，默认行为是关闭当前的 Activity，调用此方法
+	 */
+	override fun finish() {
+		super.finish()
+		/**
+		 * 应用 activity 跳转动画
+		 * 参数 1：要进入的的 activity 的进入动画，为 0 则为没有任何动画效果
+		 * 参数 2：当前的 activity 的退出动画，为 0 则为没有任何动画效果
+		 */
+		overridePendingTransition(0, R.anim.image_details_exit)
 	}
 	
 }
