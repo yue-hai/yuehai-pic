@@ -28,10 +28,9 @@
 			android:layout_height="@dimen/dp_50"
 			tools:layout="@layout/fragment_tool_bar"/>
 		
+		<!-- 翻页视图的标签栏，要与 ViewPager2 组合使用 -->
 		<!--
-			翻页视图的标签栏，要与 ViewPager2 组合使用
-			
-			background：背景颜色
+		    background：背景颜色
 			tabTextColor：未选中时的字体颜色
 			tabSelectedTextColor：选中时的字体颜色
 			tabIndicatorColor：指示器颜色
@@ -56,11 +55,17 @@
 	</LinearLayout>
 	
 	<!-- 侧边栏；想要作为侧边栏的布局可使用属性 layout_gravity="start" 来指定，start 表示将从左边划出 -->
+	<!--
+	    android:clickable="true"：指定视图是否可以接收点击事件
+		android:focusable="true"：指定视图是否可以获取焦点
+	 -->
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/home_fragment_sidebar_menu"
 		android:name="com.yuehai.pic.ui.fragment.FragmentSidebarMenu"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
-		tools:layout="@layout/sidebar_menu"/>
+		tools:layout="@layout/sidebar_menu"
+		android:clickable="true"
+		android:focusable="true"/>
 </androidx.drawerlayout.widget.DrawerLayout>

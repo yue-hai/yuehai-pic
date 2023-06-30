@@ -6,29 +6,23 @@
 	<!-- 在安卓 6.0（API 23）及以上系统，考虑到安全，访问手机 SD 卡时，不但要加权限，还需要在代码中动态申请权限 -->
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 	
 	<!--
-        android:allowBackup，是否允许应用备份。
-            允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
-            为 true 表示允许，为 false 则表示不允许
-        android:label，指定 App 在手机屏幕上显示的名称。
-        android:icon，指定 App 在手机屏幕上显示的图标。
-        
-        android:roundIcon，指定 App 的圆角图标。
-        android:supportsRtl，是否支持 阿拉伯语/波斯语 这种从右往左的文字排列顺序。为 true 表示支持，为 false 则表示不支持。
-        android:theme，指定 App 的显示风格。
+        allowBackup，是否允许允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 adb restore 来进行对应用数据的备份和恢复。
+        label，指定 App 在手机屏幕上显示的名称。
+        icon，指定 App 在手机屏幕上显示的图标。
+        roundIcon，指定 App 的圆角图标。
+        supportsRtl，是否支持 阿拉伯语/波斯语 这种从右往左的文字排列顺序。为 true 表示支持，为 false 则表示不支持。
+        targetApi：指定这个应用是针对哪个特定 API 进行开发的
+        theme，指定 App 的显示风格。
      -->
 	<application
-		android:allowBackup="false"
+		android:allowBackup="true"
 		android:label="@string/app_name"
 		android:icon="@drawable/software_icon"
 		android:roundIcon="@drawable/software_icon"
 		android:supportsRtl="false"
-		android:fullBackupContent="@xml/backup_rules"
-		tools:targetApi="31"
-		android:dataExtractionRules="@xml/data_extraction_rules"
-		android:requestLegacyExternalStorage="true">
+		tools:targetApi="31">
 		
 		<!-- 注册主窗口 -->
 		<activity

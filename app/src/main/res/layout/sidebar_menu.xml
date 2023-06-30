@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 侧边栏 -->
-<!--
-    android:clickable="true"：指定视图是否可以接收点击事件
-	android:focusable="true"：指定视图是否可以获取焦点
- -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="@dimen/dp_280"
 	android:layout_height="match_parent"
 	android:background="@color/yuehai_light_blue"
-	android:orientation="vertical"
-	android:clickable="true"
-	android:focusable="true">
+	android:orientation="vertical">
 	
 	<!-- 头像 -->
 	<ImageView
