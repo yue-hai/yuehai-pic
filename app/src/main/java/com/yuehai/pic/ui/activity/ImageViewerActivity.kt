@@ -18,7 +18,7 @@ import com.yuehai.pic.utils.AppInitializer
  * 图片详情页 Activity
  */
 class ImageViewerActivity: AppCompatActivity() {
-	
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		// 设置内容视图；当前的组件显示哪个视图（窗口）；R 就是 res 包
@@ -36,9 +36,6 @@ class ImageViewerActivity: AppCompatActivity() {
 		 */
 		window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 		
-		// 通过 intent 获取上个 Activity 发送的消息
-		val position = intent.extras!!.getInt("position")
-		
 		// 获取控件对象
 		val recyclerView = findViewById<RecyclerView>(R.id.image_viewer_RecyclerView)
 		/**
@@ -53,8 +50,9 @@ class ImageViewerActivity: AppCompatActivity() {
 		recyclerView.adapter = ImageViewerAdapter(this)
 		// 关闭更改动画
 		(recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
-		// 指定 RecyclerView 中显示的第几个子项
-		recyclerView.scrollToPosition(position)
+		// 指定 RecyclerView 中显示的第几个子项；通过 intent 获取上个 Activity 发送的消息，当前所在 item 的索引
+		recyclerView.scrollToPosition(intent.extras!!.getInt("position"))
+		
 		// 使 RecyclerView 自动贴合页面，即在滚动到边缘时自动停止滚动
 		val snapHelper = PagerSnapHelper()
 		snapHelper.attachToRecyclerView(recyclerView)

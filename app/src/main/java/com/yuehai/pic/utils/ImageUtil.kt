@@ -4,7 +4,7 @@ import android.content.ContentResolver
 import android.provider.MediaStore
 import com.yuehai.pic.bean.ImageData
 import com.yuehai.pic.bean.global.Config.SORT_METHOD
-import com.yuehai.pic.bean.global.Global.imageDataList
+import com.yuehai.pic.bean.global.Global.IMAGE_DATA_LIST
 
 /**
  * 图片工具类
@@ -15,12 +15,11 @@ class ImageUtil {
 	 * 查询所有图片
 	 * @param contentResolver 内容提供器
 	 */
-	fun getImageAll(
-		contentResolver: ContentResolver
-	){
+	fun getImageAll(contentResolver: ContentResolver){
+		
 		// 清空集合中的数据
-		imageDataList.clear()
-
+		IMAGE_DATA_LIST.clear()
+		
 		/**
 		 * 通过 contentResolver.query() 方法可以查询 MediaStore 数据库，这个方法接收五个参数：
 		 *
@@ -51,8 +50,8 @@ class ImageUtil {
 				// 获取图片的 ID
 				val idColumnIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID)
 				
-				// 将图片的 Uri 添加到 imageDataList 中
-				imageDataList.add(ImageData(cursor.getLong(idColumnIndex)))
+				// 将图片的 Uri 添加到 IMAGE_DATA_LIST 中
+				IMAGE_DATA_LIST.add(ImageData(cursor.getLong(idColumnIndex)))
 			}
 		}
 		

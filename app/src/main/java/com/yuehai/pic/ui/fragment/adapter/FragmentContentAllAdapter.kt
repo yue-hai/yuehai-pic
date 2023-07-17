@@ -3,14 +3,13 @@ package com.yuehai.pic.ui.fragment.adapter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.yuehai.pic.R
-import com.yuehai.pic.bean.global.Global.imageDataList
+import com.yuehai.pic.bean.global.Global.IMAGE_DATA_LIST
 import com.yuehai.pic.ui.activity.ImageViewerActivity
 import com.yuehai.pic.ui.fragment.adapter.holder.FragmentContentAllHolder
 import com.yuehai.pic.utils.GlideUtil
@@ -40,7 +39,7 @@ class FragmentContentAllAdapter(
 	 */
 	override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 		// 使用 Glide 加载图片
-		GlideUtil().imageListThumbnail(context, (holder as FragmentContentAllHolder).imageView, imageDataList[position].id)
+		GlideUtil().imageListThumbnail(context, (holder as FragmentContentAllHolder).imageView, IMAGE_DATA_LIST[position].id)
 
 		// 给每个视图绑定点击事件
 		holder.itemView.setOnClickListener { onClickListenerItemView(position) }
@@ -64,7 +63,7 @@ class FragmentContentAllAdapter(
 	 * 该方法的返回值是一个整数，表示数据集中的元素数量。
 	 */
 	override fun getItemCount(): Int {
-		return imageDataList.size
+		return IMAGE_DATA_LIST.size
 	}
 	
 	/**

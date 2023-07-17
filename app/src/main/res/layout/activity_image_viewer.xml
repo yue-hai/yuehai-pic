@@ -16,7 +16,8 @@
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toTopOf="parent"
+		tools:layout="@layout/activity_image_viewer_details_item"/>
 	
 	<!-- 占位，给该控件的高度赋值为通知栏的高度，以便给通知栏一个黑色的背景 -->
 	<TextView

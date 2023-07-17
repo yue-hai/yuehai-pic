@@ -16,7 +16,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
-import com.yuehai.pic.bean.global.Global.imageDataList
+import com.yuehai.pic.bean.global.Global.IMAGE_DATA_LIST
 import com.yuehai.pic.ui.activity.SettingsActivity
 import com.yuehai.pic.utils.AppInitializer
 import kotlin.random.Random
@@ -44,7 +44,7 @@ class FragmentSidebarMenu: Fragment() {
 		darkModeChangeControl(view)
 		
 		// 获取查询出的图片对象集合中的随机一个元素
-		val imageData = imageDataList[Random.nextInt(imageDataList.size)]
+		val imageData = IMAGE_DATA_LIST[Random.nextInt(IMAGE_DATA_LIST.size)]
 		// 使用图片 id 创建 Uri 对象
 		val uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, imageData.id)
 		// 使用 Uri 对象创建 Bitmap 对象
