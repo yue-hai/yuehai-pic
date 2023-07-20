@@ -1,5 +1,6 @@
 package com.yuehai.pic.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.viewpager2.widget.ViewPager2
 import com.yuehai.pic.R
+import com.yuehai.pic.bean.global.Config
 import com.yuehai.pic.bean.global.Config.SORT_METHOD
 import com.yuehai.pic.ui.activity.HomeActivity
 import com.yuehai.pic.ui.fragment.FragmentContentAll
@@ -38,8 +40,12 @@ class CreateAlertDialogUtil {
 			setMessage(context.getString(R.string.alert_dialog_content_storage_permission_error))
 			// 设置对话框的确认按钮文本及其点击监听器
 			setPositiveButton(context.getString(R.string.alert_dialog_positive)){ _, _ ->
-				context.startActivity(Intent(context, HomeActivity::class.java))
-				exitProcess(0)
+				// 创建一个新的任务，并清除当前任务栈顶
+				val intent = Intent(context.applicationContext, HomeActivity::class.java)
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+				context.startActivity(intent)
+				// 关闭当前应用
+				(context as Activity).finish()
 			}
 			// 设置对话框的否定按钮文本及其点击监听器；还有第三个其他按钮：setNeutralButton
 			setNegativeButton(context.getString(R.string.alert_dialog_negative)){ _, _ -> Log.i("月海", "点击了取消") }
@@ -49,6 +55,58 @@ class CreateAlertDialogUtil {
 		val alertDialog = builder.create()
 		
 		// 显示提醒对话框
+		alertDialog.show()
+	}
+	
+	/**
+	 * 选择视图模式单选框
+	 * @param context 上下文环境
+	 */
+	fun selectViewModeDialog(context: Context){
+		// 选项
+		val option = context.resources.getStringArray(R.array.alert_dialog_content_view_mode_option)
+		
+		// 获取 SharedPreferences 对象
+		val sharedPreferences = context.getSharedPreferences("yuehai-pic", MODE_PRIVATE)
+		// 查询 sharedPreferences 中保存的数据，即选中的索引，并赋值，默认选中第一项：滑动翻页视图模式
+		var selected: Int = sharedPreferences.getInt("select_view_mode", 0)
+		
+		// 创建对话框的建造器
+		val builder = AlertDialog.Builder(context)
+		
+		// 设置单选框的标题文本
+		with(builder) {
+			// 设置单选框的标题文本
+			setTitle(context.getString(R.string.alert_dialog_title_select_view_mode))
+			// 设置单选框的选项、默认选中的选项、以及点击选项后的事件
+			setSingleChoiceItems(option, selected){ _, i ->
+				// 记录选择的选项
+				selected = i
+			}
+			// 设置单选框的确定按钮文本及其点击监听器
+			setPositiveButton(context.getString(R.string.alert_dialog_positive)){ _, _ ->
+				// 保存用户的选择，存储数据需要借助 Editor 类
+				val edit = sharedPreferences.edit()
+				// 放入数据
+				edit.putInt("select_view_mode", selected)
+				// 保存数据
+				edit.apply()
+				
+				// 创建一个新的任务，并清除当前任务栈顶
+				val intent = Intent(context.applicationContext, HomeActivity::class.java)
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+				context.startActivity(intent)
+				// 关闭当前应用
+				(context as Activity).finish()
+			}
+			// 设置单选框的否定按钮文本及其点击监听器
+			setNegativeButton(context.getString(R.string.alert_dialog_negative)){ _, _ -> }
+		}
+		
+		// 根据建造器构建单选框对象
+		val alertDialog = builder.create()
+		
+		// 显示单选框
 		alertDialog.show()
 	}
 	
@@ -156,15 +214,31 @@ class CreateAlertDialogUtil {
 				// 调用方法，获取全部图片数据
 				ImageUtil().getImageAll(context.contentResolver)
 				
-				val homeActivity =  context as HomeActivity
-				// 获取 ViewPager2 控件
-				val viewPager2 = homeActivity.findViewById<ViewPager2>(R.id.home_ViewPager2_content)
-				// 获取 ViewPager2 控件中的第一个（索引 0）视图，即 FragmentContentAll
-				val fragmentContentAll = homeActivity.supportFragmentManager.findFragmentByTag(
-					"f${viewPager2.adapter?.getItemId(0)}"
-				) as FragmentContentAll
-				// 调用 FragmentContentAll 中的 refreshDisplayArea 方法刷新视图
-				fragmentContentAll.refreshDisplayArea()
+				// 判断用户选择的视图模式
+				when (Config.VIEW_MODE) {
+					/**
+					 * 滑动翻页视图模式
+					 */
+					0 -> {
+						val homeActivity =  context as HomeActivity
+						// 获取 ViewPager2 控件
+						val viewPager2 = homeActivity.findViewById<ViewPager2>(R.id.home_ViewPager2_content)
+						// 获取 ViewPager2 控件中的第一个（索引 0）视图，即 FragmentContentAll
+						val fragmentContentAll = homeActivity.supportFragmentManager.findFragmentByTag(
+							"f${viewPager2.adapter?.getItemId(0)}"
+						) as FragmentContentAll
+						// 调用 FragmentContentAll 中的 refreshDisplayArea 方法刷新视图
+						fragmentContentAll.refreshDisplayArea()
+					}
+					/**
+					 * 点击切换视图模式
+					 */
+					1 -> {
+						val fragmentManager = (context as HomeActivity).supportFragmentManager
+						val fragmentContentAll = fragmentManager.findFragmentById(R.id.home_fragment_content_all) as FragmentContentAll
+						fragmentContentAll.refreshDisplayArea()
+					}
+				}
 				
 				// 关闭弹窗
 				dialogInterface.cancel()

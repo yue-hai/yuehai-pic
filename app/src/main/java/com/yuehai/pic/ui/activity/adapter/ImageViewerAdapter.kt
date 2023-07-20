@@ -247,8 +247,8 @@ class ImageViewerAdapter(
 		 */
 		if (slideDown || wipeUp){
 			imageView.animate()
-				.scaleX(1.0f)
-				.scaleY(1.0f)
+				.scaleX(ORIGINAL_SIZE_IMAGE)
+				.scaleY(ORIGINAL_SIZE_IMAGE)
 				.setDuration(0)
 				.start()
 			

@@ -14,9 +14,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import com.yuehai.pic.R
+import com.yuehai.pic.bean.global.Config.VIEW_MODE
 import com.yuehai.pic.bean.global.Global.IMAGE_DATA_LIST
+import com.yuehai.pic.ui.activity.HomeActivity
 import com.yuehai.pic.ui.activity.SettingsActivity
 import com.yuehai.pic.utils.AppInitializer
 import kotlin.random.Random
@@ -25,6 +29,16 @@ import kotlin.random.Random
  * 侧边栏
  */
 class FragmentSidebarMenu: Fragment() {
+	
+	/**
+	 * 定义按钮对象，等待赋值，方便之后使用
+	 */
+	var sidebarMenuBarAll: TextView? = null
+	var sidebarMenuBarDirectory: TextView? = null
+	var sidebarMenuBarTree: TextView? = null
+	var sidebarMenuBarAlbum: TextView? = null
+	var sidebarMenuBarSettings: TextView? = null
+	var sidebarMenuBarExit: TextView? = null
 	
 	/**
 	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
@@ -54,16 +68,97 @@ class FragmentSidebarMenu: Fragment() {
 		
 		// 调用方法，给用户名控件文本框设置圆角矩形和背景色
 		view.findViewById<TextView>(R.id.sidebar_menu_user_name).background = AppInitializer().roundedRectangleTextView(20f, getColor(requireContext(), R.color.yuehai_light_blue_slightly_dark))
-	
+		
+		// 给按钮对象赋值
+		sidebarMenuBarAll = view.findViewById(R.id.sidebar_menu_bar_all)
+		sidebarMenuBarDirectory = view.findViewById(R.id.sidebar_menu_bar_directory)
+		sidebarMenuBarTree = view.findViewById(R.id.sidebar_menu_bar_tree)
+		sidebarMenuBarAlbum = view.findViewById(R.id.sidebar_menu_bar_album)
+		sidebarMenuBarSettings = view.findViewById(R.id.sidebar_menu_settings)
+		sidebarMenuBarExit = view.findViewById(R.id.sidebar_menu_exit)
+		
+		// 默认选中全部图片视图，判断是否是深色模式，是则将全部按钮的背景设置为深灰色、不是则将全部按钮的背景设置为浅灰色
+		if (( requireContext().resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_YES) ) !=0){
+			sidebarMenuBarAll?.setBackgroundColor(getColor(requireContext(), R.color.yuehai_dark_gray))
+		}else{
+			sidebarMenuBarAll?.setBackgroundColor(getColor(requireContext(), R.color.yuehai_light_gray))
+		}
+		
+		// 判断当前视图模式，如果是点击切换视图模式，则显示 全部、目录、树、相册 按钮，并给按钮添加点击事件
+		if (VIEW_MODE == 1){
+			sidebarMenuBarAll?.visibility = View.VISIBLE
+			sidebarMenuBarDirectory?.visibility = View.VISIBLE
+			sidebarMenuBarTree?.visibility = View.VISIBLE
+			sidebarMenuBarAlbum?.visibility = View.VISIBLE
+			
+			sidebarMenuBarAll?.setOnClickListener { onClickListenerSwitchView(it, "all") }
+			sidebarMenuBarDirectory?.setOnClickListener { onClickListenerSwitchView(it, "directory") }
+			sidebarMenuBarTree?.setOnClickListener { onClickListenerSwitchView(it, "tree") }
+			sidebarMenuBarAlbum?.setOnClickListener { onClickListenerSwitchView(it, "album") }
+		}
+		
 		// 给设置按钮添加点击事件
-		view.findViewById<TextView>(R.id.sidebar_menu_settings).setOnClickListener { onClickListenerSettings() }
+		sidebarMenuBarSettings?.setOnClickListener { onClickListenerSettings() }
 		
 		// 给退出按钮添加点击事件
-		view.findViewById<TextView>(R.id.sidebar_menu_exit).setOnClickListener { onClickListenerExit() }
+		sidebarMenuBarExit?.setOnClickListener { onClickListenerExit() }
 		
 		return view
 	}
-
+	
+	/**
+	 * 点击切换视图，点击进入对应的页面，并改变按钮的背景颜色
+	 */
+	private fun onClickListenerSwitchView(view: View, viewName: String){
+		val homeActivity =  context as HomeActivity
+		
+		// 获取 fragment 视图对象
+		val fragmentContentAll = homeActivity.findViewById<FragmentContainerView>(R.id.home_fragment_content_all)
+		val fragmentContentDirectory = homeActivity.findViewById<FragmentContainerView>(R.id.home_fragment_content_directory)
+		val fragmentContentTree = homeActivity.findViewById<FragmentContainerView>(R.id.home_fragment_content_tree)
+		val fragmentContentAlbum = homeActivity.findViewById<FragmentContainerView>(R.id.home_fragment_content_album)
+		
+		// 将所有视图隐藏
+		fragmentContentAll.visibility = View.GONE
+		fragmentContentDirectory.visibility = View.GONE
+		fragmentContentTree.visibility = View.GONE
+		fragmentContentAlbum.visibility = View.GONE
+		
+		// 判断传递进来的参数，指定显示对应的视图
+		when(viewName){
+			"all" -> { fragmentContentAll.visibility = View.VISIBLE }
+			"directory" -> { fragmentContentDirectory.visibility = View.VISIBLE }
+			"tree" -> { fragmentContentTree.visibility = View.VISIBLE }
+			"album" -> { fragmentContentAlbum.visibility = View.VISIBLE }
+		}
+		
+		// 判断是否是深色模式
+		if (( requireContext().resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_YES) ) !=0){
+			// 是深色模式，将全部状态选择器改为暗色模式
+			sidebarMenuBarAll?.setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			sidebarMenuBarDirectory?.setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			sidebarMenuBarTree?.setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			sidebarMenuBarAlbum?.setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			sidebarMenuBarSettings?.setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			sidebarMenuBarExit?.setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			// 将点击的按钮的背景变为深灰色
+			view.setBackgroundColor(getColor(requireContext(), R.color.yuehai_dark_gray))
+		}else{
+			// 不是深色模式，将全部状态选择器改为亮色模式
+			sidebarMenuBarAll?.setBackgroundResource(R.drawable.selector_sidebar_menu_light_mode)
+			sidebarMenuBarDirectory?.setBackgroundResource(R.drawable.selector_sidebar_menu_light_mode)
+			sidebarMenuBarTree?.setBackgroundResource(R.drawable.selector_sidebar_menu_light_mode)
+			sidebarMenuBarAlbum?.setBackgroundResource(R.drawable.selector_sidebar_menu_light_mode)
+			sidebarMenuBarSettings?.setBackgroundResource(R.drawable.selector_sidebar_menu_light_mode)
+			sidebarMenuBarExit?.setBackgroundResource(R.drawable.selector_sidebar_menu_light_mode)
+			// 将点击的按钮的背景变为浅灰色
+			view.setBackgroundColor(getColor(requireContext(), R.color.yuehai_light_gray))
+		}
+		
+		// 关闭侧边栏
+		homeActivity.findViewById<DrawerLayout>(R.id.drawer_menu).closeDrawers()
+	}
+	
 	/**
 	 * 设置按钮，点击进入设置页面
 	 */
@@ -87,6 +182,27 @@ class FragmentSidebarMenu: Fragment() {
 		if (( requireContext().resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_YES) ) !=0){
 			// 修改菜单列表的背景颜色
 			view.findViewById<LinearLayout>(R.id.sidebar_menu_control_list).setBackgroundColor(getColor(requireContext(), R.color.yuehai_dark_background))
+			
+			// 修改全部按钮的字体颜色和状态选择器
+			with(view.findViewById<TextView>(R.id.sidebar_menu_bar_all)){
+				setTextColor(Color.WHITE)
+				setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			}
+			// 修改目录按钮的字体颜色和状态选择器
+			with(view.findViewById<TextView>(R.id.sidebar_menu_bar_directory)){
+				setTextColor(Color.WHITE)
+				setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			}
+			// 修改树按钮的字体颜色和状态选择器
+			with(view.findViewById<TextView>(R.id.sidebar_menu_bar_tree)){
+				setTextColor(Color.WHITE)
+				setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			}
+			// 修改相册按钮的字体颜色和状态选择器
+			with(view.findViewById<TextView>(R.id.sidebar_menu_bar_album)){
+				setTextColor(Color.WHITE)
+				setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			}
 			
 			// 修改设置按钮的字体颜色和状态选择器
 			with(view.findViewById<TextView>(R.id.sidebar_menu_settings)){

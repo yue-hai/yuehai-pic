@@ -27,5 +27,12 @@ object Config {
 	 * 按名称降序：MediaStore.Files.FileColumns.TITLE + " DESC"
 	 * 按名称升序：MediaStore.Files.FileColumns.TITLE + " ASC"
 	 */
-	var SORT_METHOD:String = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
+	var SORT_METHOD: String = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
+	
+	/**
+	 * 视图模式，默认为滑动翻页视图模式
+	 * 0：滑动翻页视图模式
+	 * 1：点击切换视图模式
+	 */
+	var VIEW_MODE: Int = 0
 }

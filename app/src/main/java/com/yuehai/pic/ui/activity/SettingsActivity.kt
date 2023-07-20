@@ -26,6 +26,8 @@ class SettingsActivity: AppCompatActivity() {
 		// 给返回按钮绑定点击事件
 		findViewById<ImageButton>(R.id.settings_exit).setOnClickListener { onClickListenerExit() }
 		
+		// 给视图模式选项绑定点击事件
+		findViewById<LinearLayout>(R.id.settings_view_mode).setOnClickListener { onClickListenerViewMode() }
 		// 给缓存加载策略选项绑定点击事件
 		findViewById<LinearLayout>(R.id.settings_loading_caching_cache_loading_strategy).setOnClickListener { onClickListenerCacheLoadingStrategy() }
 	}
@@ -35,6 +37,14 @@ class SettingsActivity: AppCompatActivity() {
 	 */
 	private fun onClickListenerExit(){
 		finish()
+	}
+	
+	/**
+	 * 给视图模式选项绑定点击事件，点击时弹出弹窗，进行选择
+	 */
+	private fun onClickListenerViewMode(){
+		// 调用方法，显示选择视图模式单选框
+		CreateAlertDialogUtil().selectViewModeDialog(this)
 	}
 	
 	/**
@@ -53,6 +63,10 @@ class SettingsActivity: AppCompatActivity() {
 		if ((resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_YES) ) !=0){
 			// 背景颜色
 			findViewById<LinearLayout>(R.id.settings).setBackgroundResource(R.color.yuehai_dark_background)
+			
+			// 视图模式状态选择器、字体颜色
+			findViewById<LinearLayout>(R.id.settings_view_mode).setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)
+			findViewById<TextView>(R.id.settings_view_mode_option).setTextColor(Color.WHITE)
 			
 			// 缓存加载策略状态选择器、字体颜色
 			findViewById<LinearLayout>(R.id.settings_loading_caching_cache_loading_strategy).setBackgroundResource(R.drawable.selector_sidebar_menu_dark_mode)

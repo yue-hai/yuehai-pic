@@ -37,6 +37,46 @@
 		android:orientation="vertical"
 		android:background="@color/white">
 		
+		<!-- 全部 -->
+		<TextView
+			android:id="@+id/sidebar_menu_bar_all"
+			android:text="@string/navigation_bar_all"
+			app:drawableStartCompat="@drawable/icon_sidebar_menu_bar_all_30"
+			tools:drawableStart="@drawable/icon_sidebar_menu_bar_all_30"
+			style="@style/SidebarMenuControlTextView"
+			android:visibility="gone"
+			tools:visibility="visible"/>
+		
+		<!-- 目录 -->
+		<TextView
+			android:id="@+id/sidebar_menu_bar_directory"
+			android:text="@string/navigation_bar_directory"
+			app:drawableStartCompat="@drawable/icon_sidebar_menu_bar_directory_30"
+			tools:drawableStart="@drawable/icon_sidebar_menu_bar_directory_30"
+			style="@style/SidebarMenuControlTextView"
+			android:visibility="gone"
+			tools:visibility="visible"/>
+		
+		<!-- 树 -->
+		<TextView
+			android:id="@+id/sidebar_menu_bar_tree"
+			android:text="@string/navigation_bar_tree"
+			app:drawableStartCompat="@drawable/icon_sidebar_menu_bar_tree_30"
+			tools:drawableStart="@drawable/icon_sidebar_menu_bar_tree_30"
+			style="@style/SidebarMenuControlTextView"
+			android:visibility="gone"
+			tools:visibility="visible"/>
+		
+		<!-- 相册 -->
+		<TextView
+			android:id="@+id/sidebar_menu_bar_album"
+			android:text="@string/navigation_bar_album"
+			app:drawableStartCompat="@drawable/icon_sidebar_menu_bar_album_30"
+			tools:drawableStart="@drawable/icon_sidebar_menu_bar_album_30"
+			style="@style/SidebarMenuControlTextView"
+			android:visibility="gone"
+			tools:visibility="visible"/>
+		
 		<!-- 设置 -->
 		<TextView
 			android:id="@+id/sidebar_menu_settings"

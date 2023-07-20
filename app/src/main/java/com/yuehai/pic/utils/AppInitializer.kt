@@ -14,7 +14,9 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowInsets
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.yuehai.pic.bean.global.Config
+import com.yuehai.pic.bean.global.Config.GLIDE_DISK_CACHE_STRATEGY
+import com.yuehai.pic.bean.global.Config.SORT_METHOD
+import com.yuehai.pic.bean.global.Config.VIEW_MODE
 import kotlin.math.min
 
 
@@ -33,20 +35,23 @@ class AppInitializer {
 		
 		// 设置缓存加载策略，默认为不使用磁盘缓存
 		when(sharedPreferences.getInt("select_cache_loading_strategy", 1)){
-			0 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL }
-			1 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.NONE }
-			2 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.DATA }
-			3 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.RESOURCE }
-			4 -> { Config.GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.AUTOMATIC }
+			0 -> { GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL }
+			1 -> { GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.NONE }
+			2 -> { GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.DATA }
+			3 -> { GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.RESOURCE }
+			4 -> { GLIDE_DISK_CACHE_STRATEGY = DiskCacheStrategy.AUTOMATIC }
 		}
 		
-		// 设置排序
+		// 设置排序方式
 		when(sharedPreferences.getInt("select_sort_method", 0)){
-			0 -> { Config.SORT_METHOD = MediaStore.Files.FileColumns.DATE_ADDED + " DESC" }
-			1 -> { Config.SORT_METHOD = MediaStore.Files.FileColumns.DATE_ADDED + " ASC" }
-			2 -> { Config.SORT_METHOD = MediaStore.Files.FileColumns.TITLE + " DESC" }
-			3 -> { Config.SORT_METHOD = MediaStore.Files.FileColumns.TITLE + " ASC" }
+			0 -> { SORT_METHOD = MediaStore.Files.FileColumns.DATE_ADDED + " DESC" }
+			1 -> { SORT_METHOD = MediaStore.Files.FileColumns.DATE_ADDED + " ASC" }
+			2 -> { SORT_METHOD = MediaStore.Files.FileColumns.TITLE + " DESC" }
+			3 -> { SORT_METHOD = MediaStore.Files.FileColumns.TITLE + " ASC" }
 		}
+		
+		// 设置视图模式
+		VIEW_MODE = sharedPreferences.getInt("select_view_mode", 0)
 		
 	}
 	

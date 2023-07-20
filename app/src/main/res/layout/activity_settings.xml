@@ -23,17 +23,31 @@
 			style="@style/ToolBarImageButton"/>
 	</LinearLayout>
 
-	<!-- 常规 -->
+	<!-- 常规 ———————————————————————————————————————————————————————————————— -->
 	<TextView
 		android:text="@string/settings_convention"
 		style="@style/SettingsClassifyTextView"/>
 	
-	<!-- 页面 -->
+	<!-- 页面 ———————————————————————————————————————————————————————————————— -->
 	<TextView
 		android:text="@string/settings_page"
 		style="@style/SettingsClassifyTextView"/>
 	
-	<!-- 加载及缓存 -->
+	<!-- 视图模式 -->
+	<LinearLayout
+		android:id="@+id/settings_view_mode"
+		style="@style/SettingsItemsLinearLayout">
+		<TextView
+			android:id="@+id/settings_view_mode_option"
+			android:text="@string/settings_view_mode_strategy"
+			style="@style/SettingsItemsOptionTextView"/>
+		<TextView
+			android:id="@+id/settings_view_mode_description"
+			android:text="@string/settings_view_mode_description"
+			style="@style/SettingsItemsDescriptionTextView"/>
+	</LinearLayout>
+	
+	<!-- 加载及缓存 ———————————————————————————————————————————————————————————————— -->
 	<TextView
 		android:text="@string/settings_loading_caching"
 		style="@style/SettingsClassifyTextView"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 图标，开始 -->
-<vector android:height="24dp" android:tint="#FFFFFF"
-    android:viewportHeight="24" android:viewportWidth="24"
-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="@android:color/white" android:pathData="M12,2C6.48,2 2,6.48 2,12c0,5.52 4.48,10 10,10s10,-4.48 10,-10C22,6.48 17.52,2 12,2zM11,15c0,0.55 -0.45,1 -1,1s-1,-0.45 -1,-1V9c0,-0.55 0.45,-1 1,-1s1,0.45 1,1V15zM16.02,12.78l-2.4,1.92C12.97,15.22 12,14.76 12,13.92v-3.84c0,-0.84 0.97,-1.3 1.62,-0.78l2.4,1.92C16.52,11.62 16.52,12.38 16.02,12.78z"/>
+<vector android:height="24dp" android:viewportHeight="1024"
+    android:viewportWidth="1024" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#ffffff" android:pathData="M512,961A449.1,449.1 0,0 1,337.2 98.3a449.1,449.1 0,0 1,349.6 827.4A446.3,446.3 0,0 1,512 961zM512,135a377,377 0,1 0,266.6 110.4A374.5,374.5 0,0 0,512 135z"/>
+    <path android:fillColor="#ffffff" android:pathData="M395.9,728.3V324.7c0,-17.4 13.7,-32.2 31.1,-32.7a32,32 0,0 1,32.9 32V634.3l171,-123.9 -104.8,-76.6a32,32 0,0 1,37.8 -51.7l158,115.5a16,16 0,0 1,0 25.9l-300.6,217.8a16,16 0,0 1,-25.4 -13z"/>
 </vector>

@@ -2,7 +2,7 @@
 <!-- 进入图片详情 activity 跳转动画 -->
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 	<!--
-	    fromXScale 和 fromYScale 设置动画的初始缩放比例，这里将视图缩小到原来的一半大小。
+	    fromXScale 和 fromYScale 设置动画的初始缩放比例，这里将视图缩小到 0
 	    toXScale 和 toYScale 设置动画的最终缩放比例，这里将视图恢复到原始大小
 	    pivotX 和 pivotY 设置缩放动画的中心点位置，这里将中心点设置为视图的中心。
 	    duration 设置动画的持续时间，以毫秒为单位

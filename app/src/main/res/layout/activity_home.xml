@@ -28,7 +28,7 @@
 			android:layout_height="@dimen/dp_50"
 			tools:layout="@layout/fragment_tool_bar"/>
 		
-		<!-- 翻页视图的标签栏，要与 ViewPager2 组合使用 -->
+		<!-- 滑动翻页视图模式：翻页视图的标签栏，要与 ViewPager2 组合使用 -->
 		<!--
 		    background：背景颜色
 			tabTextColor：未选中时的字体颜色
@@ -44,13 +44,57 @@
 			app:tabTextColor="@color/yuehai_white_with_light_blue"
 			app:tabSelectedTextColor="@color/white"
 			app:tabIndicatorColor="@color/white"
-			app:tabRippleColor="@color/yuehai_white_with_light_blue"/>
+			app:tabRippleColor="@color/yuehai_white_with_light_blue"
+			android:visibility="gone"
+			tools:visibility="gone"/>
 		
-		<!-- 翻页视图：显示内容主体 -->
+		<!-- 滑动翻页视图模式：翻页视图：显示内容主体 -->
 		<androidx.viewpager2.widget.ViewPager2
 			android:id="@+id/home_ViewPager2_content"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent" />
+			android:layout_height="match_parent"
+			android:visibility="gone"
+			tools:visibility="gone"/>
+		
+		<!-- 点击切换视图模式：引入 Fragment 全部 -->
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/home_fragment_content_all"
+			android:name="com.yuehai.pic.ui.fragment.FragmentContentAll"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:layout="@layout/fragment_content_all"
+			android:visibility="gone"
+			tools:visibility="gone"/>
+		
+		<!-- 点击切换视图模式：引入 Fragment 目录 -->
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/home_fragment_content_directory"
+			android:name="com.yuehai.pic.ui.fragment.FragmentContentDirectory"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:layout="@layout/fragment_content_directory"
+			android:visibility="gone"
+			tools:visibility="gone"/>
+		
+		<!-- 点击切换视图模式：引入 Fragment 树 -->
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/home_fragment_content_tree"
+			android:name="com.yuehai.pic.ui.fragment.FragmentContentTree"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:layout="@layout/fragment_content_tree"
+			android:visibility="gone"
+			tools:visibility="gone"/>
+		
+		<!-- 点击切换视图模式：引入 Fragment 相册 -->
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/home_fragment_content_album"
+			android:name="com.yuehai.pic.ui.fragment.FragmentContentAlbum"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:layout="@layout/fragment_content_album"
+			android:visibility="gone"
+			tools:visibility="gone"/>
 	
 	</LinearLayout>
 	
@@ -65,6 +109,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
+		android:visibility="visible"
+		tools:visibility="gone"
 		tools:layout="@layout/sidebar_menu"
 		android:clickable="true"
 		android:focusable="true"/>
