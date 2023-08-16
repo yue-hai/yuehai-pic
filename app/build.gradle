@@ -46,6 +46,8 @@ dependencies {
     // 它可以让你在 Activity 或 Fragment 中使用 lifecycleScope 这个方法，来启动和取消协程
     // 它还可以让你使用 LiveData 的扩展方法，如 liveData、map、switchMap 等，来处理异步数据
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
+    // Material Components 主题库：布局经常会渲染不出来，启用/关闭 这个可使布局成功渲染，不知道为什么
+    // implementation 'com.google.android.material:material:1.6.0-beta01'
 
     // recyclerview 动态列表
     implementation 'androidx.recyclerview:recyclerview:1.1.0'

@@ -1,13 +1,16 @@
 package com.yuehai.pic.ui.fragment
 
+import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.yuehai.pic.R
+import com.yuehai.pic.utils.AppInitializer
 
 /**
  * 图片详情页的顶部操作栏
@@ -28,17 +31,35 @@ class FragmentImageViewerTopInformation : Fragment() {
 		// 加载 Fragment 布局
 		val view = inflater.inflate(R.layout.fragment_image_viewer_top_information, container, false)
 		
+		// 获取根布局，设置上边距
+		val topInformation = view.findViewById<LinearLayout>(R.id.fragment_image_viewer_top_information)
+		val linearLayout = topInformation.layoutParams as FrameLayout.LayoutParams
+		linearLayout.topMargin = AppInitializer().getNotificationBarHeight(context as Activity)
+		view.layoutParams = linearLayout
+		
 		// 给返回按钮绑定点击事件
 		view.findViewById<ImageButton>(R.id.top_information_exit).setOnClickListener { onClickListenerExit() }
+		// 给详细信息按钮绑定点击事件
+		view.findViewById<ImageButton>(R.id.top_information_details).setOnClickListener { onClickListenerDetails() }
 
 		return view
 	}
 	
 	/**
-	 * 设置返回，点击退出详情页，关闭该 activity
+	 * 设置返回按钮，点击退出详情页，关闭该 activity
 	 */
 	private fun onClickListenerExit(){
 		activity?.finish()
+	}
+	
+	/**
+	 * 点击详细信息显示详细信息弹窗
+	 */
+	private fun onClickListenerDetails(){
+		// 获取详细信息弹窗控件
+		val details = activity?.findViewById<LinearLayout>(R.id.image_viewer_details)
+		// 判断图片详细信息弹窗是否显示，若是显示则隐藏，若是隐藏则显示
+		details?.visibility = if (details?.visibility == View.GONE) View.VISIBLE else View.GONE
 	}
 	
 }

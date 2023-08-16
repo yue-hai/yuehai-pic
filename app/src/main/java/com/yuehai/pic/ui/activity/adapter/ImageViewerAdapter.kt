@@ -7,7 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
+import android.widget.LinearLayout
 import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -93,7 +93,6 @@ class ImageViewerAdapter(
 	 * 该方法会提取适当的数据，并使用该数据填充 ViewHolder 的布局。
 	 * 该方法的第一个参数是一个 ViewHolder 对象，第二个参数是该 ViewHolder 在列表中的位置。在该方法中，您需要使用适当的数据填充视图。
 	 */
-	@SuppressWarnings("ClickableViewAccessibility")
 	override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 		val imageView = (holder as ImageViewerHolder).imageView
 		
@@ -361,6 +360,14 @@ class ImageViewerAdapter(
 	 * 单击事件
 	 */
 	private fun clickEvent(){
+		val activity = context as Activity
+		// 获取图片详细信息弹窗控件
+		val details = activity.findViewById<LinearLayout>(R.id.image_viewer_details)
+		// 判断图片详细信息弹窗是否显示，若是显示则隐藏并终止方法，否则执行下面的逻辑
+		if (details.visibility == View.VISIBLE){
+			details.visibility = View.GONE
+			return
+		}
 		// 调用方法，显示和隐藏操作栏、通知栏、导航栏
 		showInformation()
 	}
@@ -419,32 +426,22 @@ class ImageViewerAdapter(
 		// 获取 context 转换为 Activity 的对象
 		val activity = context as Activity
 		
-		// 获取作为通知栏背景的控件对象
-		val notificationBar = activity.findViewById<TextView>(R.id.represents_the_notification_bar)
-		// 获取作为导航栏背景的控件对象
-		val navigationBar = activity.findViewById<TextView>(R.id.represents_the_navigation_bar)
 		// 获取顶部返回按钮和图片信息等的控件对象
 		val topInformation = activity.findViewById<FragmentContainerView>(R.id.image_viewer_fragment_top_information)
 		// 获取底部图片操作按钮的控件对象
 		val bottomOperation = activity.findViewById<FragmentContainerView>(R.id.image_viewer_fragment_bottom_operation)
-		
+
 		// 判断当前通知栏和导航栏是否显示，true：正在显示；false：已经隐藏
 		if (AppInitializer().isSystemUIVisible(context)){
 			// 调用方法，隐藏通知栏和导航栏
 			AppInitializer().hideStatusBar(context)
-			
-			// 隐藏作为通知栏背景的控件对象、作为导航栏背景的控件对象、顶部返回按钮和图片信息、底部图片操作按钮
-			notificationBar.visibility = View.GONE
-			navigationBar.visibility = View.GONE
+			// 隐藏顶部和底部操作栏
 			topInformation.visibility = View.GONE
 			bottomOperation.visibility = View.GONE
 		}else{
 			// 调用方法，显示通知栏和导航栏
 			AppInitializer().showStatusBar(context)
-			
-			// 显示作为通知栏背景的控件对象、作为导航栏背景的控件对象、顶部返回按钮和图片信息、底部图片操作按钮
-			notificationBar.visibility = View.VISIBLE
-			navigationBar.visibility = View.VISIBLE
+			// 显示顶部和底部操作栏
 			topInformation.visibility = View.VISIBLE
 			bottomOperation.visibility = View.VISIBLE
 		}

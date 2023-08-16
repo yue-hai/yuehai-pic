@@ -19,7 +19,7 @@
 		<ImageButton
 			android:id="@+id/settings_exit"
 			android:src="@drawable/icon_image_details_arrow_back_24"
-			android:contentDescription="@string/image_viewer_bottom_operation"
+			android:contentDescription="@string/image_viewer_top_back_operation"
 			style="@style/ToolBarImageButton"/>
 	</LinearLayout>
 

@@ -20,9 +20,6 @@ import com.yuehai.pic.ui.fragment.adapter.FragmentContentAllAdapter
 // 主体内容：全部
 class FragmentContentAll: Fragment() {
 	
-	// 定义适配器，便于其他方法的使用
-	var adapter: FragmentContentAllAdapter? = null
-	
 	/**
 	 * onCreateView 是碎片的生命周期中的一种状态，在为碎片创建视图（加载布局）时调用
 	 *
@@ -50,11 +47,8 @@ class FragmentContentAll: Fragment() {
 		 */
 		recyclerView.layoutManager = GridLayoutManager(context, 4, LinearLayoutManager.VERTICAL, false)
 		
-		// 实例化适配器
-		adapter = FragmentContentAllAdapter(requireContext())
-		
 		// 设置适配器；调用方法获取全部图片信息
-		recyclerView.adapter = adapter
+		recyclerView.adapter = FragmentContentAllAdapter(requireContext())
 		
 		// 关闭更改动画
 		(recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
@@ -75,7 +69,7 @@ class FragmentContentAll: Fragment() {
 			 *  2、当 setOnTouchListener 和 setOnClickListener 同时使用时，onTouch 的返回值要设为 false
 			 *      这样既可以保证按下，然后再抬起的时候可以被监听，并且点击事件也会被监听。
 			 */
-			return@setOnTouchListener toolBarTouchListener(event, activity?.findViewById<FragmentContainerView>(R.id.home_fragment_tool_bar))
+			return@setOnTouchListener toolBarTouchListener(event, activity?.findViewById(R.id.home_fragment_tool_bar))
 		}
 		
 		return view
@@ -89,15 +83,9 @@ class FragmentContentAll: Fragment() {
 	 * @return 此处因为要监听点击事件（FragmentContentAllAdapter 中），所以按下时要返回 false
 	 * 又因为要监听点击事件的原因，按下时的监听不会触发，所以逻辑要写在滑动的监听中
 	 */
-	private fun toolBarTouchListener(event: MotionEvent, toolBarView: FragmentContainerView?) : Boolean{
+	private fun toolBarTouchListener(event: MotionEvent, toolBarView: FragmentContainerView?): Boolean{
 		// 判断滑动事件种类
 		when(event.action){
-			/**
-			 * 手指按下时的处理逻辑
-			 */
-			MotionEvent.ACTION_DOWN -> {
-			
-			}
 			/**
 			 * 手指移动时的处理逻辑
 			 */
@@ -135,13 +123,13 @@ class FragmentContentAll: Fragment() {
 				val layoutParams = toolBarView.layoutParams as ViewGroup.MarginLayoutParams
 				
 				/**
-				 * 单独判断上边界和下边界，边界为 (0 - toolBarView.height) ~ 0
-				 * topMargin < (0 - toolBarView.height)，表示已经完全隐藏，此时不应继续往上移动，赋值为 (0 - toolBarView.height)
+				 * 单独判断上边界和下边界，边界为 -toolBarView.height ~ 0
+				 * topMargin < -toolBarView.height，表示已经完全隐藏，此时不应继续往上移动，赋值为 -toolBarView.height
 				 * topMargin > 0，表示已经完全显示，此时不应继续往下移动，，赋值为 0
-				 * 不属于两者，则为 (0 - toolBarView.height) ~ 0，此时正常进行赋值操作
+				 * 不属于两者，则为 -toolBarView.height ~ 0，此时正常进行赋值操作
 				 */
-				if (topMargin < (0 - toolBarView.height)){
-					layoutParams.topMargin = (0 - toolBarView.height)
+				if (topMargin < -toolBarView.height){
+					layoutParams.topMargin = -toolBarView.height
 					toolBarView.layoutParams = layoutParams
 				}else if (topMargin > 0){
 					layoutParams.topMargin = 0
@@ -170,18 +158,19 @@ class FragmentContentAll: Fragment() {
 	 * 刷新当前显示的区域
 	 */
 	fun refreshDisplayArea(){
-		// 获取 RecyclerView 控件对象，=
-		val layoutManager = view?.findViewById<RecyclerView>(R.id.fragment_content_all_item_RecyclerView)?.layoutManager as GridLayoutManager
+		// 获取 RecyclerView 控件对象
+		val recyclerView = view?.findViewById<RecyclerView>(R.id.fragment_content_all_item_RecyclerView)
+		val layoutManager = recyclerView?.layoutManager as GridLayoutManager
 		// 获取第一个可见项的索引
 		val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 		// 获取最后一个可见项的索引
 		val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
 		/**
-		 * 刷新当前所有可见项，未显示的位置，等用户滑到的时候就已经改变了
+		 * 刷新当前所有可见项；未显示的位置，等用户滑到的时候就已经改变了
 		 * 参数 1：要刷新的元素的首个索引
 		 * 参数 2：要刷新的元素的个数
 		 */
-		adapter?.notifyItemRangeChanged(firstVisibleItemPosition, lastVisibleItemPosition - firstVisibleItemPosition + 1)
+		recyclerView.adapter?.notifyItemRangeChanged(firstVisibleItemPosition, lastVisibleItemPosition - firstVisibleItemPosition + 1)
 	}
 	
 }

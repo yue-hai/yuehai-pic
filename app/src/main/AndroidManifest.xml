@@ -23,6 +23,7 @@
 		android:icon="@drawable/software_icon"
 		android:roundIcon="@drawable/software_icon"
 		android:supportsRtl="false"
+		android:requestLegacyExternalStorage="true"
 		tools:targetApi="31">
 		
 		<!-- 注册主窗口 -->

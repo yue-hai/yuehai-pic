@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 图片详情 - 底部图片操作按钮 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:weightSum="8"
-	android:background="@color/black">
-	
-	<!-- 返回按钮 -->
-	<ImageButton
-		android:id="@+id/bottom_information_exit"
-		android:src="@drawable/icon_image_details_arrow_back_24"
-		android:layout_width="0dp"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/fragment_image_viewer_bottom_operation"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_weight="1"
-		android:gravity="center"
-		style="?android:attr/buttonBarButtonStyle"
-		android:contentDescription="@string/image_viewer_bottom_operation" />
+		android:weightSum="5"
+		android:background="@color/yuehai_dark_background">
+	
+	<!-- 移动 -->
+	<TextView
+			android:id="@+id/bottom_information_move"
+			android:text="@string/image_viewer_bottom_move_operation"
+			app:drawableTopCompat="@drawable/icon_image_details_move_30"
+			style="@style/ImageViewerOperatingButton"/>
 
+	<!-- 删除 -->
+	<TextView
+			android:id="@+id/bottom_information_delete"
+			android:text="@string/image_viewer_bottom_delete_operation"
+			app:drawableTopCompat="@drawable/icon_image_details_delete_30"
+			style="@style/ImageViewerOperatingButton"/>
+	
+	
+	<!-- 改名 -->
+	<TextView
+			android:id="@+id/bottom_information_rename"
+			android:text="@string/image_viewer_bottom_rename_operation"
+			app:drawableTopCompat="@drawable/icon_image_details_rename_30"
+			style="@style/ImageViewerOperatingButton"/>
+	
+	<!-- 编辑 -->
+	<TextView
+			android:id="@+id/bottom_information_edit"
+			android:text="@string/image_viewer_bottom_edit_operation"
+			app:drawableTopCompat="@drawable/icon_image_details_edit_30"
+			style="@style/ImageViewerOperatingButton"/>
+	
+	<!-- 分享 -->
+	<TextView
+			android:id="@+id/bottom_information_sending"
+			android:text="@string/image_viewer_bottom_sending_operation"
+			app:drawableTopCompat="@drawable/icon_image_details_sending_30"
+			style="@style/ImageViewerOperatingButton"/>
+	
 </LinearLayout>

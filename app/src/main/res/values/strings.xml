@@ -2,6 +2,7 @@
 	
 	<!-- 软件名 -->
 	<string name="app_name">月海 - 图片</string>
+	<string name="app_name_en">yuehai-pic</string>
 	
 	<!-- 翻页视图的标签栏按钮显示文字 ———————————————————————————————————————————————————————————————— -->
 	<string name="navigation_bar_all">全部</string>
@@ -9,14 +10,30 @@
 	<string name="navigation_bar_tree">树</string>
 	<string name="navigation_bar_album">相册</string>
 	
-	<!-- ImageButton 控件的 contentDescription 属性使用；用来描述这个控件的作用 ———————————————————————————————————————————————————————————————— -->
+	<!-- TextView 文字内容使用 -->
+	<string name="image_viewer_details_title">名称：%s</string>
+	<string name="image_viewer_details_data">路径：%s</string>
+	<string name="image_viewer_details_aspect">尺寸：%d x %d</string>
+	<string name="image_viewer_details_size">大小：%d</string>
+	<string name="image_viewer_details_type">类型：%s</string>
+	<string name="image_viewer_details_bucketDisplayName">来源：%s</string>
+	<string name="image_viewer_details_dateAdded">保存日期：%s</string>
+	<string name="image_viewer_rename_popup_rename">重命名</string>
+	
+	<!-- ImageButton 控件的 contentDescription 属性使用，用来描述这个控件的作用；或 TextView 同时显示图片和文字 ———————————— -->
 	<string name="tool_bar_settings_menu">打开设置菜单</string>
 	<string name="tool_bar_sort">排序</string>
 	<string name="tool_bar_search">搜索</string>
 	<string name="tool_bar_start">开始进行分类处理</string>
 	<string name="fragment_content_all_item_imagePath">某张图片</string>
-	<string name="image_viewer_bottom_operation">返回按钮</string>
 	<string name="sidebar_menu_profile_photo">头像</string>
+	<string name="image_viewer_top_back_operation">返回按钮</string>
+	<string name="image_viewer_top_details_operation">详细信息</string>
+	<string name="image_viewer_bottom_move_operation">移动</string>
+	<string name="image_viewer_bottom_delete_operation">删除</string>
+	<string name="image_viewer_bottom_rename_operation">改名</string>
+	<string name="image_viewer_bottom_edit_operation">编辑</string>
+	<string name="image_viewer_bottom_sending_operation">分享</string>
 	
 	<!-- 侧边栏控件 sidebar_menu 使用 ———————————————————————————————————————————————————————————————— -->
 	<string name="sidebar_menu_user_name">月海</string>

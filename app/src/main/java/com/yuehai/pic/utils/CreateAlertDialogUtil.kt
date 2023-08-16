@@ -14,7 +14,6 @@ import com.yuehai.pic.bean.global.Config
 import com.yuehai.pic.bean.global.Config.SORT_METHOD
 import com.yuehai.pic.ui.activity.HomeActivity
 import com.yuehai.pic.ui.fragment.FragmentContentAll
-import kotlin.system.exitProcess
 
 /**
  * 创建提醒对话框工具类
@@ -67,7 +66,7 @@ class CreateAlertDialogUtil {
 		val option = context.resources.getStringArray(R.array.alert_dialog_content_view_mode_option)
 		
 		// 获取 SharedPreferences 对象
-		val sharedPreferences = context.getSharedPreferences("yuehai-pic", MODE_PRIVATE)
+		val sharedPreferences = context.getSharedPreferences(context.resources.getString(R.string.app_name_en), MODE_PRIVATE)
 		// 查询 sharedPreferences 中保存的数据，即选中的索引，并赋值，默认选中第一项：滑动翻页视图模式
 		var selected: Int = sharedPreferences.getInt("select_view_mode", 0)
 		
@@ -121,7 +120,7 @@ class CreateAlertDialogUtil {
 		val description = context.resources.getStringArray(R.array.alert_dialog_content_select_cache_loading_strategy_description)
 		
 		// 获取 SharedPreferences 对象
-		val sharedPreferences = context.getSharedPreferences("yuehai-pic", MODE_PRIVATE)
+		val sharedPreferences = context.getSharedPreferences(context.resources.getString(R.string.app_name_en), MODE_PRIVATE)
 		// 查询 sharedPreferences 中保存的数据，即选中的索引，并赋值，默认选中第二项：不进行磁盘缓存
 		var selected: Int = sharedPreferences.getInt("select_cache_loading_strategy", 1)
 		
@@ -179,7 +178,7 @@ class CreateAlertDialogUtil {
 		val option = context.resources.getStringArray(R.array.alert_dialog_content_select_sort_method_option)
 		
 		// 获取 SharedPreferences 对象
-		val sharedPreferences = context.getSharedPreferences("yuehai-pic", MODE_PRIVATE)
+		val sharedPreferences = context.getSharedPreferences(context.resources.getString(R.string.app_name_en), MODE_PRIVATE)
 		// 查询 sharedPreferences 中保存的数据，即选中的索引，并赋值，默认选中第一项：按时间降序
 		val selected: Int = sharedPreferences.getInt("select_sort_method", 0)
 		

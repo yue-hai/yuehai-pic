@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 图片详情页 -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/activity_image_viewer"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
-	android:background="@color/black">
+	android:background="@color/yuehai_dark_background"
+	tools:background="@color/white">
 	
 	<!-- RecyclerView 动态列表，用于显示图片列表 -->
 	<androidx.recyclerview.widget.RecyclerView
@@ -18,26 +21,6 @@
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
 		tools:layout="@layout/activity_image_viewer_details_item"/>
-	
-	<!-- 占位，给该控件的高度赋值为通知栏的高度，以便给通知栏一个黑色的背景 -->
-	<TextView
-		android:id="@+id/represents_the_notification_bar"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:background="@color/black"
-		app:layout_constraintTop_toTopOf="@id/image_viewer_RecyclerView"
-		android:visibility="visible"
-		tools:visibility="visible"/>
-	
-	<!-- 占位，给该控件的高度赋值为导航栏的高度，以便给导航栏一个黑色的背景 -->
-	<TextView
-		android:id="@+id/represents_the_navigation_bar"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:background="@color/black"
-		app:layout_constraintBottom_toBottomOf="@id/image_viewer_RecyclerView"
-		android:visibility="visible"
-		tools:visibility="visible"/>
 	
 	<!-- 顶部返回按钮和图片信息等 -->
 	<androidx.fragment.app.FragmentContainerView
@@ -60,5 +43,157 @@
 		android:visibility="visible"
 		tools:visibility="visible"
 		tools:layout="@layout/fragment_image_viewer_bottom_operation"/>
+	
+	<!-- 详细信息弹窗 -->
+	<LinearLayout
+			android:id="@+id/image_viewer_details"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/dp_24"
+			android:padding="@dimen/dp_15"
+			android:background="@drawable/shape_image_viewer_details_background_radius_24"
+			app:layout_constraintTop_toBottomOf="@+id/image_viewer_fragment_top_information"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			android:orientation="vertical"
+			android:visibility="gone"
+			tools:visibility="visible">
+		
+		<!-- 名称 title -->
+		<TextView
+				android:id="@+id/details_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:textSize="@dimen/sp_12"/>
+		<!-- 路径 data -->
+		<TextView
+				android:id="@+id/details_data"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:textSize="@dimen/sp_12"/>
+		<!-- 尺寸 aspect -->
+		<TextView
+				android:id="@+id/details_aspect"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:textSize="@dimen/sp_12"/>
+		<!-- 大小 size -->
+		<TextView
+				android:id="@+id/details_size"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:textSize="@dimen/sp_12"/>
+		<!-- 类型 type -->
+		<TextView
+				android:id="@+id/details_type"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:textSize="@dimen/sp_12"/>
+		<!-- 来源 bucketDisplayName -->
+		<TextView
+				android:id="@+id/details_bucketDisplayName"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:textSize="@dimen/sp_12"/>
+		<!-- 保存日期 dateAdded -->
+		<TextView
+				android:id="@+id/details_dateAdded"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:textSize="@dimen/sp_12"/>
+	</LinearLayout>
+	
+	<!-- 重命名弹窗 -->
+	<LinearLayout
+		android:id="@+id/image_viewer_rename_popup"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/dp_24"
+		android:padding="@dimen/dp_15"
+		android:background="@drawable/shape_image_viewer_rename_background_radius_24"
+		app:layout_constraintBottom_toTopOf="@+id/image_viewer_fragment_bottom_operation"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:orientation="vertical"
+		android:inputType="textEmailAddress"
+		android:clickable="true"
+		android:focusable="true"
+		android:visibility="gone"
+		tools:visibility="visible">
+	
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/image_viewer_rename_popup_rename"
+				android:textSize="@dimen/sp_18"
+				android:paddingBottom="@dimen/dp_10"
+				android:textColor="@color/white"/>
+		
+		<!-- 输入文本框 -->
+		<!--
+		 	autofillHints：用于指定自动填充提示，以便 Android 系统能够提供自动填充建议，使用户更方便地填写表单
+			inputType：用于指定输入字段的类型，以便 Android 系统正确处理用户的输入，并显示适当的键盘
+			hint：为输入字段提供一个描述性的提示文本。这个文本将在输入字段为空时显示
+			textColorHint：提示文本的颜色
+		 -->
+		<EditText
+				android:id="@+id/image_viewer_rename_popup_new_name"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textColor="@color/white"
+				android:backgroundTint="@color/white"
+				android:autofillHints="@string/image_viewer_bottom_rename_operation"
+				android:inputType="text"
+				android:hint="@string/image_viewer_rename_popup_rename"
+				android:textColorHint="@color/yuehai_dark_gray_slightly_light"/>
+		
+		<!-- 确定取消按钮 -->
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:weightSum="2"
+				android:orientation="horizontal">
+			
+			<TextView
+					android:id="@+id/image_viewer_rename_popup_negative"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:padding="@dimen/dp_15"
+					android:text="@string/alert_dialog_negative"
+					android:textColor="@color/yuehai_light_blue"
+					android:textSize="@dimen/sp_16"
+					android:background="@drawable/selector_sidebar_menu_dark_mode"
+					android:clickable="true"
+					android:focusable="true"/>
+			
+			<TextView
+					android:layout_width="1dp"
+					android:layout_height="@dimen/dp_20"
+					android:background="@color/white"/>
+			
+			<TextView
+					android:id="@+id/image_viewer_rename_popup_positive"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:padding="@dimen/dp_15"
+					android:text="@string/alert_dialog_positive"
+					android:textColor="@color/yuehai_light_blue"
+					android:textSize="@dimen/sp_16"
+					android:background="@drawable/selector_sidebar_menu_dark_mode"
+					android:clickable="true"
+					android:focusable="true"/>
+		</LinearLayout>
+	</LinearLayout>
 	
 </androidx.constraintlayout.widget.ConstraintLayout>

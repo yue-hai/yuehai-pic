@@ -2,11 +2,7 @@ package com.yuehai.pic.utils
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapShader
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Shader
+import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.provider.MediaStore
@@ -14,6 +10,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowInsets
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.yuehai.pic.R
 import com.yuehai.pic.bean.global.Config.GLIDE_DISK_CACHE_STRATEGY
 import com.yuehai.pic.bean.global.Config.SORT_METHOD
 import com.yuehai.pic.bean.global.Config.VIEW_MODE
@@ -31,7 +28,7 @@ class AppInitializer {
 	 */
 	fun initializeApplicationData(context : Context){
 		// 获取 SharedPreferences 对象
-		val sharedPreferences = context.getSharedPreferences("yuehai-pic", Context.MODE_PRIVATE)
+		val sharedPreferences = context.getSharedPreferences(context.resources.getString(R.string.app_name_en), Context.MODE_PRIVATE)
 		
 		// 设置缓存加载策略，默认为不使用磁盘缓存
 		when(sharedPreferences.getInt("select_cache_loading_strategy", 1)){
@@ -95,11 +92,26 @@ class AppInitializer {
 	}
 	
 	/**
-	 * 显示通知栏和导航栏，该行代码应在 setContentView() 方法之后调用
+	 * 显示通知栏和导航栏，使得布局延伸到状态栏和导航栏区域，该行代码应在 setContentView() 方法之后调用
 	 * @param context Activity
 	 */
 	fun showStatusBar(context : Context){
-		(context as Activity).window.decorView.systemUiVisibility = 0
+		val window = (context as Activity).window
+		/**
+		 * View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN：这个标志指示布局应该考虑状态栏的高度，
+		 * 		以便在不隐藏状态栏的情况下调整布局，以防止内容被状态栏遮挡。使用这个标志可以让布局内容延伸到状态栏下方。
+		 * View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION：这个标志类似于 SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN，但是针对导航栏（虚拟按键或手势导航栏）。
+		 * 		它指示布局应该考虑导航栏的高度，以便在不隐藏导航栏的情况下调整布局，以防止内容被导航栏遮挡。
+		 * View.SYSTEM_UI_FLAG_LAYOUT_STABLE：这个标志指示布局应该保持稳定，即使系统UI的可见性发生变化时也不应该重新布局。这对于保持布局的稳定性和连续性很有用
+		 */
+		window.decorView.setSystemUiVisibility(
+			View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+					or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+					or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+		)
+		// 设置状态栏和导航栏的颜色
+		window.statusBarColor = Color.BLACK
+		window.navigationBarColor = Color.BLACK
 	}
 	
 	/**
