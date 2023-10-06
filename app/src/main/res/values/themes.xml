@@ -1,6 +1,6 @@
 <resources>
 	<!-- Base application theme. -->
-	<style name="Theme.Y_pic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+	<style name="Theme.yuehai_pic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 		
 		<!-- 应用的主要色调，actionBar 默认使用该颜色，Toolbar 导航栏的底色 -->
 		<item name="colorPrimary">@color/yuehai_light_blue</item>

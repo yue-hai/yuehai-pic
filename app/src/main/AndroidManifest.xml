@@ -31,7 +31,7 @@
 			android:name=".ui.activity.HomeActivity"
 			android:exported="true"
 			android:launchMode="standard"
-			android:theme="@style/Theme.Y_pic">
+			android:theme="@style/Theme.yuehai_pic">
 			<!-- 配置为主窗口 -->
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -52,7 +52,7 @@
 			android:name=".ui.activity.SettingsActivity"
 			android:exported="true"
 			android:launchMode="standard"
-			android:theme="@style/Theme.Y_pic">
+			android:theme="@style/Theme.yuehai_pic">
 		</activity>
 		
 	</application>
